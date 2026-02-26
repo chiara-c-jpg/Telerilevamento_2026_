@@ -1,0 +1,17 @@
+
+
+
+
+
+# oggetti e assegnazione
+michele <- 2+3 
+michele = 2 + 3
+michele
+[1] 5
+# arrays o vettori
+Sonia <-c(10, 8, 3, 1, 0) # funzione e argomenti 
+Giorgia<-c(3, 10, 20, 50, 100) 
+plot(Giorgia,Sonia)
+plot(Giorgia,Sonia, col="blue", pch=19)
+plot(Giorgia,Sonia, col="blue", pch=19, cex=2)
+
