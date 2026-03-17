@@ -1,0 +1,29 @@
+
+library( terra)
+librerai(imageRy)
+#listing  file
+im.list # ricrera il file a disposizione 
+
+importing data 
+mato1992<-im.import("matogrosso_l5 
+im.plotRGB 
+l1=NIR l2=red l3=green
+im.plotRGB(mato1992,1, 2, 3)    #tutto il red è
+
+#excercise: put NIR on top of the green comoent  of the  RGB scheme 
+à# il s uolo  nudo ha  un c olore  rosa  mentre  diventatava  giallo  quando  inserite la banda del NIR sulla  componete  BLU 
+
+#NIR ontop of the blue. 
+il giallo
+# Excercise: import the  image from 2006
+
+
+
+#a  sisnitra immagine del 2022 a detsra del  2006
+notate  qa
+ast è 
+# excersise: mke  a multiframe 
+
+
+mat
+
