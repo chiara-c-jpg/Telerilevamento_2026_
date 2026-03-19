@@ -3,6 +3,7 @@ library( terra)
 # install.packages("ggridges") # this is needed to create ridgeline plots
 library(imageRy)
 library(terra)
+ligrary(viridis)
 # Listing the data
 im.list()
 EN_01 = im.import("EN_01.png")
@@ -18,6 +19,21 @@ im.multiiframe (2,1) # lo plottiamo con due righe ed una colonna
 plot(EN_01)
 plot(EN_13)
 #Differencing
-ENdiff<- EN_01)    #prendo i valori di  azoto  del  primo moometo e faccio la  differenza con quelle del secondo momento. 
+ENdiff<-[[EN_01]] -EN_13[[1]]     #prendo i valori di  azoto  del  primo moometo e faccio la  differenza con quelle del secondo momento.
+# Greenland example. 
+# Excersise : import alla the greenland data and create   stack. 
+g2000<-im.import("greenland.2000.tif")
+g2005<-im.import("greenland.2005.tif")
+g2010<-im.import("greenland.2010.tif")
+g2015<-im.import("greenland.2015.tif")
+sg<- c(g2000, g 2005, g2010, g 2015)
+gr<-im.import("greenland")
+l apply # prende  una  lista  ed applica una lista 
+
+plot(gr
+#RGB
+im.importRGB(gr, r=gr[[1]]     # la  funzione è creata  mettendo semplicemente i nomi dei layer con i nomi dle  layer corrispondenti.
+
+
 
 
