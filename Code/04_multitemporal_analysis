@@ -1,0 +1,23 @@
+# Code for òerforming multitemporal analysiss
+library( terra)
+# install.packages("ggridges") # this is needed to create ridgeline plots
+library(imageRy)
+library(terra)
+# Listing the data
+im.list()
+EN_01 = im.import("EN_01.png")
+EN_01 = flip(EN_01)
+plot(EN_01)
+
+EN_13 <- im.import("EN_13.png")
+EN_13 <- flip(EN_13)
+plot(EN_13)
+
+# Execerside : plot the two images one on the top of the other
+im.multiiframe (2,1) # lo plottiamo con due righe ed una colonna
+plot(EN_01)
+plot(EN_13)
+#Differencing
+ENdiff<- EN_01)    #prendo i valori di  azoto  del  primo moometo e faccio la  differenza con quelle del secondo momento. 
+
+
