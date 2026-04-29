@@ -1,0 +1,3 @@
+# par(mfrow)
+mf<-function(nx,ny) 
+sent<-imimport 
