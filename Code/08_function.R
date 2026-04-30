@@ -1,4 +1,4 @@
-# My functions!
+# My functions
 
 somma <- function(x,y){
   z=x+y
