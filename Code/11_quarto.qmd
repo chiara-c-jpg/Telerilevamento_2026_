@@ -1,0 +1,94 @@
+---
+title: "Decoding biodiversity through spatio-temporal spectral variations"
+author: Duccio Rocchini
+format:
+  revealjs:
+    self-contained: true
+editor: visual
+---
+
+# Intro
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+# Coding
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## Installare `imageRy`
+Per installare `imageRy`:
+
+```{r, echo=T}
+# devtools::install_github("ducciorocchini/imageRy")
+```
+
+## Come installare `imageRy`
+Si può usare `imageRy` installandolo da GitHub:
+
+```{r, echo=T, eval=F}
+devtools::install_github("ducciorocchini/imageRy")
+```
+
+## How to load `imageRy`
+Si può usare `imageRy` come pacchetto:
+
+```{r, echo=T}
+library(imageRy) 
+```
+
+
+## Lista files
+Lista di files in `imageRy`:
+
+```{r, echo=T}
+im.list()
+```
+
+
+## False evaluation
+Lista di files in `imageRy` senza far partire la funzione:
+
+```{r, echo=T, eval=F}
+im.list()
+```
+
+## Importare un'immagine
+
+```{r, echo=T}
+library(terra)
+blett <- im.import("bletterbach.jpg")
+```
+
+# Analisi dati
+
+## Indici
+
+Un potenziale indice riguarda la sottrazione delle prime due bande:
+
+```{r, echo=T}
+index <- blett[[1]] - blett[[2]]
+plot(index)
+```
+
+## inserire un'immagine esterna
+
+## Why space, time, and spectra matter
+
+::: {style="text-align: center;"}
+![](percorso/era.png){width="80%" align="center"}
+:::
