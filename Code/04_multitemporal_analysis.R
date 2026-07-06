@@ -1,4 +1,4 @@
-Code for performing multitemporal analysis with satellite imageRy
+# Code for performing multitemporal analysis with satellite imageRy
 
 library(terra)
 library(imageRy)
