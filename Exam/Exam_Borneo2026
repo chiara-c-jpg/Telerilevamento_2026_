@@ -7,8 +7,9 @@ date: "2026-07-08"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# Analisi dello stress fisiologico ed idrico nelle foreste del Borneo, in risposta a coltivazioni di palma da olio Elaeis guineensis (2015-2025)
 
-## 1.Introduzione📌
+#1.Introduzione📌
 
 Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
 Questo studio, si focalizza sull’isola del Borneo e la provincia di Riau, a Sumatra, dove l’intensità del fenomeno ha mostrato un effetto diverso in relazione alla natura pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico  El Nino-Southern Oscillation (ENSO).
@@ -17,14 +18,14 @@ La transizione da foresta primaria a piantagione monocolturale determina un impa
 
 ## 2. Obiettivo del progetto🎯 
 
-Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale per verificare lo stato di integrità della vegetazione perseguendo i seguenti p:
+Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale per verificare lo stato di integrità della vegetazione perseguendo i seguenti punti:
 1)	Identificare e quantificare la perdita di copertura forestale in relazione al cambiamento nell’utilizzo del suolo a scopo monocolturale
 2) rilevare i cambiamenti di densità vegetazionale per definire le aree soggette a deforestazione rispetto alla foresta primaria 
 2)	Valutare lo stress fisiologico di salute della copertura vegetale mediante indici di biomassa normalizzati (NDVI)
 3)	Analizzare la risposta allo stress idrico accentuato dall’evento climatico ENSO tramite indici di umidità fogliare e del suolo (NDMI)
 
 ## Metodi ed utilizzo degli indici spettrali🛰️ 
-In  quest’analisi multitemporale sono state utilizzate immagini satellitari Sentinel-2 ESA, ottenute tramite Google Earth Engine.Gli indici spettrali impiegati sono i seguenti: 
+In  quest’analisi multitemporale sono state utilizzate immagini satellitari Sentinel-2 ESA, ottenute tramite Google Earth Engine. Gli indici spettrali impiegati sono i seguenti: 
 
 ##NDVI (Normalized Difference Vegetation Index) :
 Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis
@@ -36,11 +37,12 @@ La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress id
 
 ##ANALISI CODICE R
 
-#Impostazione della working directory di lavoro
+# 1.Raccolta dati 
+## Impostazione della working directory di lavoro
 
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-# Controllare che le immagini siano salvate nella directory di lavoro 
+## Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
 
 #apertura dei pacchetti R precedentemente installati
@@ -56,18 +58,20 @@ library(patchwork)
 borneo<-rast("Boneo2015.tif") 
 borneo<-rast("Boneo2015.tif")
 
-#definizione palette imageRy dove "red" indica la perdita di vegetazione e "blu" il guadagno
+#definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
 
 #Realizzazione di un pannello multiframe per accostare le due immagini
 im.multiframe(1,2)
 plotRGB(borneo2015,r="BA",g="B3", stretch="lin",main="Borneo2015(True Color)")
 plotRGB(borneo2025,r="B4", g="B3", B="B2", stretch="in",main="Borneo2025(True Color)"))
+
 #Sostituendo il NIR (B8) al posto del rosso
 im.multiframe(1,2)
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
-#Analisi DVI(Difference Vegetation INDEX)
+
+#1.Analisi DVI(Difference Vegetation INDEX)
 
 #Calcolo DVI 2015 e 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015"B4"]]
@@ -89,7 +93,6 @@ ndvi_diff<-ndvi2015-ndvi2025
 #Plot della diffrenza normalzizza(NDVI) affiancati
 plot(ndbi2015, col=viridis(100),main="NDVI 2015")
 plot(ndvi2025, col=viris(100),main="NDVI 2025")
-
 
 
 #3.Analisi NDMI (stess idrico e impatto dell'ENSO)
