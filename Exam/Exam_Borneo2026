@@ -88,8 +88,8 @@ par(mfrow=c(1,1))
 plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
 
 #Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
-ndvi2015<-(borneo[[8]]-borneo2015[[4]])/(borneo2015[[8]]+borneo2015[[4]])
-ndvi2025<-(borneo[[8]]-borneo2025[[4]])/(borneo2025[[8]]+borneo2015[[4]])
+ndvi2015<-(borneo2015[[8]]-borneo2015[[4]])/(borneo2015[[8]]+borneo2015[[4]])
+ndvi2025<-(borneo2025[[8]]-borneo2025[[4]])/(borneo2025[[8]]+borneo2025[[4]])
 
 #Calcolo la diffrenza NDVI 
 ndvi_diff<-ndvi2015-ndvi2025
