@@ -50,7 +50,7 @@ list.files()
 library(terra)
 library(imageRY)
 library(viridis)
-libraru(ggplot2)
+library(ggplot2)
 library(patchwork)
 
 #Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
@@ -62,12 +62,12 @@ borneo<-rast("Boneo2015.tif")
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
 
 #Realizzazione di un pannello multiframe per accostare le due immagini
-im.multiframe(1,2)
-plotRGB(borneo2015,r="BA",g="B3", stretch="lin",main="Borneo2015(True Color)")
-plotRGB(borneo2025,r="B4", g="B3", B="B2", stretch="in",main="Borneo2025(True Color)"))
+parmcfrow(1,2)
+plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
+plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
 
 #Sostituendo il NIR (B8) al posto del rosso
-im.multiframe(1,2)
+parmcfrow(1,2)
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 
@@ -150,7 +150,7 @@ theme(axis.text.x=element_text(angle=45,hjust=1))
 
 #uniamo i grafici con patchwork
 p1+p2
-
+print(
 #5.Conclsione 
 Dagli elevati vaori di Ndvi e NDVI è Possile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammtazione e riduzione della loro distribuzione di foresta primaria . Inoltre tramite l'indice NDVI e NDMI è stato possibile evidenziare come  l'area sia stata sottoposta non solo ad una transformazione nell'utilizzo del suolo a scopo agricolo bensì a uno stress idrico implementato dalla siccità in parte dovuta alla presenza di eventi monsonici dell'ENSO. 
 Questa frammantazione dell'ecosistema forestale implica la necessità di stabilire strategie di mnitraggio dell'area interessata, la proposta di monitoraggi dei suoli adiacenti e le implicazioni sulla diversità biologica. 
