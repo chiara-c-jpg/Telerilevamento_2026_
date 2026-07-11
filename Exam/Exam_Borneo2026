@@ -67,7 +67,7 @@ plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (Tru
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
 
 #Sostituendo il NIR (B8) al posto del rosso
-parmcfrow(1,1)
+par(mcfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 
