@@ -105,14 +105,14 @@ plot(ndvi2025, col=viridis(100),main="NDVI 2025")
 #3.Analisi NDMI (stess idrico e impatto dell'ENSO)
 
 # Calcolo NDMI 2015 2025 
-ndmi2015<-(borneo[["B8"]]-borneo2015[["B11"]])/(borneo2015["B8"]]+borneo2015["B11"]])
-ndmi2025<-(borneo[["B8"]]-borneo2025[["B11"]])/(borneo2025["B8"]]+borneo2025["B11"]])
+ndmi2015<-(borneo2015[["B8"]]-borneo2015[["B11"]])/(borneo2015[["B8"]]+borneo2015[["B11"]])
+ndmi2025<-(borneo2025[["B8"]]-borneo2025[["B11"]])/(borneo2025[["B8"]]+borneo2025[["B11"]])
 
 #Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
 ndmi_diff<-ndmi2015-ndmi2025
 
 # Plot della differenza Normalizzata NDMI
-im.multiframe
+im.multiframe(1,1)
 plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)")
 
 # 4. Classificazione delle aree vegetazionali 
