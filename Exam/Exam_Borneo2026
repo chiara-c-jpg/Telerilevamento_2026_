@@ -91,22 +91,22 @@ plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
 ndvi2015<-(borneo2015[["B8"]]-borneo2015[["B4"]])/(borneo2015[["B8"]]+borneo2015[["B4"]])
 ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025[["B4"]])
 
-#Calcolo la diffrenza NDVI 
-ndvi_diff<-ndvi2015-ndvi2025
+#Calcolo la differenza NDVI 
+ndvi_difference<-ndvi2015-ndvi2025
 
 #imposto un solo schermo per i due NDVI accostati
 par(mfrow=c(1,2))
 
 #Plot della differenza normalizzita (NDVI) affiancati
 plot(ndvi2015, col=viridis(100),main="NDVI 2015")
-plot(ndvi2025, col=viris(100),main="NDVI 2025")
+plot(ndvi2025, col=viridis(100),main="NDVI 2025")
 
 
 #3.Analisi NDMI (stess idrico e impatto dell'ENSO)
 
 # Calcolo NDMI 2015 2025 
-ndmi2015<-(borneo["B8"]]-borneo2015[["B11"]])/(borneo2015["B8"]]+borneo2015["B11"]]
-ndmi2025<-(borneo["B8"]]-borneo2025[["B11"]])/(borneo2025["B8"]]+borneo2015["B11"]]
+ndmi2015<-(borneo[["B8"]]-borneo2015[["B11"]])/(borneo2015["B8"]]+borneo2015["B11"]])
+ndmi2025<-(borneo[["B8"]]-borneo2025[["B11"]])/(borneo2025["B8"]]+borneo2025["B11"]])
 
 #Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
 ndmi_diff<-ndmi2015-ndmi2025
