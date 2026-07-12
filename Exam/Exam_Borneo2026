@@ -125,14 +125,15 @@ matrice_class<-matrix(c(
  -Inf,0.4, 1, #Classe 1:Suolo nudo/Deforestazione rec
    0.4,0.7, 2, #Classe 2:Piantagioni
    0.7,Inf, 3 #Classe 3: Foresta primaria intatta
-),ncol = 3, byrow = TRUE)MA
+),ncol = 3, byrow = TRUE)
 
 # classificazione sulla base di ndvi
 ndvi2015_class<-classify(ndvi2015, matrice_class)
 ndvi2025_class<-classify(ndvi2025, matrice_class)
 
 #Visualizzazione plot accostati
-colori_classificazione<-c("red", "yellow","darkgreen")
+colori_classi<-c("red", "yellow","darkgreen")
+
 im.multiframe(1,2)
 plot(ndvi2015_class, col=colori_classificazione,main="Classificazione 2015")
 plot(ndvi2015_class,col=colori_classificazione,main="Classificazione 2015")
