@@ -135,9 +135,9 @@ ndvi2025_class<-classify(ndvi2025, matrice_class)
 colori_classi<-c("red", "yellow","darkgreen")
 
 im.multiframe(1,2)
-plot(ndvi2015_class, col=colori_classificazione,main="Classificazione 2015")
-plot(ndvi2015_class,col=colori_classificazione,main="Classificazione 2015")
-plot(ndvi2025_class,col=colori_classificazione,main="Classificazione 2025")
+plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
+plot(ndvi2015_class,col=colori_classi, main="Classificazione 2015")
+plot(ndvi2025_class,col=colori_classi, main="Classificazione 2025")
 
 #Statische e percentuali
 freq_2015<-freq(ndvi2015_class)
