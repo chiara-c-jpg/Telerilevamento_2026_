@@ -127,7 +127,7 @@ matrice_class<-matrix(c(
    0.7,Inf, 3 #Classe 3: Foresta primaria intatta
 ),ncol = 3, byrow = TRUE)
 
-# classificazione sulla base di ndvi
+#Classificazione sulla base di NDVI
 ndvi2015_class<-classify(ndvi2015, matrice_class)
 ndvi2025_class<-classify(ndvi2025, matrice_class)
 
@@ -140,25 +140,27 @@ colori_classi<-c("red", "yellow","darkgreen")
 par(mfrow=c(1,2))
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
+par(mFrow(c=(1,1)) # Reset finestra grafica
 
-#Statische e percentuali
+##5.Analisi statistica
+
 freq_2015<-freq(ndvi2015_class)
 freq_2025<-freq(ndvi2025_class)
 
 perc_2015<-freq_2015$count* 100/ncell(ndvi2015_class)
-perc_2015<-freq_2025$count* 100/ncell(ndvi2025_class)
+perc_2025<-freq_2025$count* 100/ncell(ndvi2025_class)
 
 tabella_classi<-data.frame(
- Classe=c("Suolo Nudo,"Piantagioni o veg rada","Foresta Primaria")
+ Classe=c("Suolo Nudo","Piantagioni","Foresta Primaria")
  Anno_2015=round(perc_2015,2)
  Anno_2025=round(perc_2025,2)
 )
 print(tabella_classi))
 
 #Realizzazione di grafici a barre tramite il pacchetto ggplot2
-p1<-ggplot(tabella_classi,aes(x=Classe,y=Anno2015,geombar(stat=identify")+scale_fill_manual(values=colori_classi)+ylim(0,100 )+
+p1<-ggplot(tabella_classi,aes(x=Classe,y=Anno2015,geom_bar(stat=identity")+scale_fill_manual(values=colori_classi)+ylim(0,100 )+
 theme(axis.text.x=element_text(angle=45,hjust=1))
-p2<-ggplot(tabella_classi,aes(x=Classe,y=Anno2015,geombar(stat=identify")+scale_fill_manual(values=colori_classi)+ylim(0,100 )+
+p2<-ggplot(tabella_classi,aes(x=Classe,y=Anno2015,geom_bar(stat=identity")+scale_fill_manual(values=colori_classi)+ylim(0,100 )+
 theme(axis.text.x=element_text(angle=45,hjust=1))
 
 #uniamo i grafici con patchwork
