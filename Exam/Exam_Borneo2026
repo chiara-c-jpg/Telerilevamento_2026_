@@ -112,10 +112,10 @@ ndmi2025<-(borneo2025[["B8"]]-borneo2025[["B11"]])/(borneo2025[["B8"]]+borneo202
 ndmi_diff<-ndmi2015-ndmi2025
 
 # Plot della differenza Normalizzata NDMI
-#le aree blu indicano valori pos dell'NDMI, quidni la perdita di umidità nella vetazione tra IL 2015 ed il 2025
+#le aree blu indicano valori pos dell'NDMI, quindi la perdita di umidità nella vetazione tra IL 2015 ed il 2025
 #le aree rosse indicano valori negativi delL'indice NDMI l'aumneto di umidità nella vegetazione condizionata dall'ENSO
-im.multiframe(1,1)
 #le aree bianche indicano dove il livello di NDMI è rimasto invariato
+im.multiframe(1,1)
 plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)")
 
 # 4. Classificazione delle aree vegetazionali : raggruppamento dei pixel con stessa firma spettrale in categorie
@@ -145,8 +145,8 @@ plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
 freq_2015<-freq(ndvi2015_class)
 freq_2025<-freq(ndvi2025_class)
 
-perc_2015<-freq_2015count$* 100/ncell(ndvi2015_class)
-perc_2015<-freq_2025coun$t* 100/ncell(ndvi2025_class)
+perc_2015<-freq_2015$count* 100/ncell(ndvi2015_class)
+perc_2015<-freq_2025$count* 100/ncell(ndvi2025_class)
 
 tabella_classi<-data.frame(
  Classe=c("Suolo Nudo,"Piantagioni o veg rada","Foresta Primaria")
