@@ -131,13 +131,15 @@ matrice_class<-matrix(c(
 ndvi2015_class<-classify(ndvi2015, matrice_class)
 ndvi2025_class<-classify(ndvi2025, matrice_class)
 
-#Visualizzazione plot accostati
 colori_classi<-c("red", "yellow","darkgreen")
 
-im.multiframe(1,2)
+#Visualizzazione plot accostati
+# il rosso indica il suolo privo di vegetazione a causa della deforestazione
+# il giallo, colore dominante, corrisponde alle piantagioni di palma da olio 
+# il verde scuro evidenzia a frammentazione della foresta primaria in aree localizzate
+par(mfrow=c(1,2))
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
-plot(ndvi2015_class,col=colori_classi, main="Classificazione 2015")
-plot(ndvi2025_class,col=colori_classi, main="Classificazione 2025")
+plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
 
 #Statische e percentuali
 freq_2015<-freq(ndvi2015_class)
