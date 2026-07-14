@@ -28,55 +28,55 @@ Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale
 3)	Analizzare la risposta allo stress idrico accentuato dall’evento climatico ENSO tramite indici di umidità fogliare e del suolo (NDMI)
 
 ## 3. Metodi ed utilizzo degli indici spettrali 🛰️
-In  quest’analisi multitemporale sono state utilizzate immagini satellitari Sentinel-2 ESA, ottenute tramite Google Earth Engine. Gli indici spettrali impiegati sono i seguenti: 
+Nella presnete analisi multitemporale sono state utilizzate immagini satellitari Sentinel-2 ESA, ottenute tramite Google Earth Engine. Gli indici spettrali impiegati sono i seguenti: 
 
-## NDVI (Normalized Difference Vegetation Index) :
-Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis
+### DVI (Difference Vegetation Index)
 
-## NDMI Normalized Difference Moisture Idex : 
 
-Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e  l’infrarosso a  corto raggio (SWIR, Banda 11) 
+### NDVI (Normalized Difference Vegetation Index) 
+Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis.
+
+### NDMI Normalized Difference Moisture Idex : 
+
+Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e l’infrarosso a corto raggio (SWIR, Banda 11). 
 La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
 
-## ANALISI CODICE R
+## 4. Raccolta immagini
+Le immagini sono state scaricate tramite il codice Java Script attraverso il sito Google Earth Engine https://earthengine.google.com/.
 
-# 1.Raccolta immagini
-Le immagini sono state scaricate tramite il codice Java Script attraverso il sito Google Earth Engine https://earthengine.google.com/
+codice R 
 
-# Impostazione della directory di lavoro
-
+#### Impostazione della directory di lavoro
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-# Controllare che le immagini siano salvate nella directory di lavoro 
+#### Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
 
-# Apertura dei pacchetti R precedentemente installati
-
+#### Apertura dei pacchetti R precedentemente installati
 library(terra)
 library(imageRy)
 library(viridis)
 library(ggplot2)
 library(patchwork)
 
-# Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
-
+##### Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif") 
 
-# definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
+##### definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
 
-# Realizzazione di un pannello per accostare le due immagini
+##### Realizzazione di un pannello per accostare le due immagini
 par(mfrow=c(1,2))
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
 
-# Sostituendo il NIR (B8) al posto del rosso
+##### Sostituendo il NIR (B8) al posto del rosso
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 
-# 1.Analisi DVI (Difference Vegetation INDEX)
+## 1.Analisi DVI (Difference Vegetation INDEX)
 
 # Calcolo DVI per il 2015 e il 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015[["B4"]]
