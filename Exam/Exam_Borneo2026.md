@@ -32,19 +32,20 @@ Gli indici spettrali impiegati nello studio della vegetazione sono i seguenti:
 
 ### DVI (Difference Vegetation Index)
 Calcola la diffrenza lineare tra la banda del vicino infrarosso e quella del rosso.
-$DVI=NIR-RED$
+
+$$DVI=NIR-RED$$
 
 ---
 ### NDVI (Normalized Difference Vegetation Index) 
 Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis.
 
-$NDVI=\frac{(NIR-RED)}{(NIR+RED)}
+$$NDVI=\frac{(NIR-RED)}{(NIR+RED)}$$
 
 ---
 ### NDMI (Normalized Difference Moisture Idex)  
 Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e l’infrarosso a corto raggio (SWIR, Banda 11). 
 
-$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$
+$$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$$
 
 ---
 ## 4. Raccolta immagini🌍
