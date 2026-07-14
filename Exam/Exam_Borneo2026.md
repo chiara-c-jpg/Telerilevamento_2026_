@@ -130,9 +130,9 @@ ndmi2025<-(borneo2025[["B8"]]-borneo2025[["B11"]])/(borneo2025[["B8"]]+borneo202
 ndmi_diff<-ndmi2015-ndmi2025
 
 ### Plot della differenza Normalizzata NDMI
-#le aree blu indicano valori pos dell'NDMI, quindi la perdita di umidità nella vetazione tra IL 2015 ed il 2025
-#le aree rosse indicano valori negativi delL'indice NDMI l'aumneto di umidità nella vegetazione condizionata dall'ENSO
-#le aree bianche indicano dove il livello di NDMI è rimasto invariato
+#### Le aree blu indicano valori pos dell'NDMI, quindi la perdita di umidità nella vetazione tra IL 2015 ed il 2025.
+#### Le aree rosse indicano valori negativi delL'indice NDMI l'aumneto di umidità nella vegetazione condizionata dall'ENSO.
+#### Le aree bianche indicano dove il livello di NDMI è rimasto invariato.
 im.multiframe(1,1)
 plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)")
 
