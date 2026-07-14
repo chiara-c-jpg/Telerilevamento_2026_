@@ -97,7 +97,7 @@ plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
 plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
 plot(Borneo2015[["B1"]], main="B4 - NIR 2015", col= magma(100))
 
-### visualizzazione separata delle quattro bande per il 2015
+### visualizzazione separata delle quattro bande per il 2025
 im.multiframe(1,2)
 plot(Borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(Borneo2025[["B3"]], main="B4 - Verde 2025", col= magma(100))
@@ -105,8 +105,7 @@ plot(Borneo2025[["B2"]], main="B4 - Blu 2025", col= magma(100))
 plot(Borneo2025[["B1"]], main="B4 - NIR 2025", col= magma(100))
 
 #### reset pannello grafico singolo
-
-par(mfrow(1,2))
+im.multiframe(1,1)
 
 ---
 ## 6.Analisi DVI (Difference Vegetation INDEX)
