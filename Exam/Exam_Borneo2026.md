@@ -26,7 +26,7 @@ Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale
 
 ---
 ## 3. Metodi ed dati satellitari 🛰️
-Nella seguente analisi multitemporale sono state impiegate immagini satellitari Sentinel-2 ESA, ottenute da Google Earth Engine(https://earthengine.google.com/). Rispetto a satelliti come Lansat (risoluzione 30 m), Sentinel-2 consente una risoluzione maggiore fino a 10m per le bande del visisbile e del vicino infrarosso (NIR). La Roi (Region of Interest) comprende l'area meridioale del Borneo di Kalimantan.
+Nella seguente analisi multitemporale sono state impiegate immagini satellitari Sentinel-2 ESA, ottenute da [Google Earth Engine](https://earthengine.google.com/). Rispetto a satelliti come Lansat (risoluzione 30 m), Sentinel-2 consente una risoluzione maggiore fino a 10m per le bande del visisbile e del vicino infrarosso (NIR). La Roi (Region of Interest) comprende l'area meridioale del Borneo di Kalimantan.
 
 Gli indici spettrali impiegati nello studio della vegetazione sono i seguenti:
 
