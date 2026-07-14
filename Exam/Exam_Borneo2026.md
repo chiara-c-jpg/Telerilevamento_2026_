@@ -7,6 +7,9 @@ date: "2026-07-08"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+#### Chiara Tattini
+#### Matricola n.
+
 # Analisi dello stress fisiologico ed idrico nelle foreste del Borneo, in risposta a coltivazioni di palma da olio Elaeis guineensis (2015-2025)
 
 ## 1.Introduzione📌
@@ -27,25 +30,27 @@ Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale
 ## 3. Metodi ed utilizzo degli indici spettrali 🛰️
 In  quest’analisi multitemporale sono state utilizzate immagini satellitari Sentinel-2 ESA, ottenute tramite Google Earth Engine. Gli indici spettrali impiegati sono i seguenti: 
 
-##NDVI (Normalized Difference Vegetation Index) :
+## NDVI (Normalized Difference Vegetation Index) :
 Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis
 
-##NDMI Normalized Difference Moisture Idex : 
+## NDMI Normalized Difference Moisture Idex : 
 
 Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e  l’infrarosso a  corto raggio (SWIR, Banda 11) 
 La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
 
-##ANALISI CODICE R
+## ANALISI CODICE R
 
-# 1.Raccolta dati 
-#Impostazione della working directory di lavoro
+# 1.Raccolta immagini
+Le immagini sono state scaricate tramite il codice Java Script attraverso il sito Google Earth Engine https://earthengine.google.com/
+
+# Impostazione della directory di lavoro
 
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-#Controllare che le immagini siano salvate nella directory di lavoro 
+# Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
 
-#apertura dei pacchetti R precedentemente installati
+# Apertura dei pacchetti R precedentemente installati
 
 library(terra)
 library(imageRy)
@@ -53,33 +58,34 @@ library(viridis)
 library(ggplot2)
 library(patchwork)
 
-#Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
+# Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
 
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif") 
 
-#definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
+# definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
 
-#Realizzazione di un pannello multiframe per accostare le due immagini
+# Realizzazione di un pannello per accostare le due immagini
 par(mfrow=c(1,2))
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
 
-#Sostituendo il NIR (B8) al posto del rosso
+# Sostituendo il NIR (B8) al posto del rosso
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 
-#1.Analisi DVI(Difference Vegetation INDEX)
+# 1.Analisi DVI (Difference Vegetation INDEX)
 
-#Calcolo DVI 2015 e 2025
+# Calcolo DVI per il 2015 e il 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015[["B4"]]
 dvi2025<-borneo2025[["B8"]]-borneo2025[["B4"]]
 
-#Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
+# Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
 dvi_diff<-dvi2015-dvi2025
-#imposto un solo schermo
+
+# Impostazione un unico schermo
 par(mfrow=c(1,1))
 
 # Grafico della differenza
@@ -87,28 +93,28 @@ par(mfrow=c(1,1))
 #il bianco le aree stabili, mentre il blu il leggero aumento di ricrescita stagionale
 plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
 
-#Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
+# Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
 ndvi2015<-(borneo2015[["B8"]]-borneo2015[["B4"]])/(borneo2015[["B8"]]+borneo2015[["B4"]])
 ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025[["B4"]])
 
-#Calcolo la differenza NDVI 
+# Calcolo della differenza NDVI 
 ndvi_difference<-ndvi2015-ndvi2025
 
-#imposto un solo schermo per i due NDVI accostati
+# Impostazione di un solo schermo per i due NDVI accostati
 par(mfrow=c(1,2))
 
-#Plot della differenza normalizzita (NDVI) affiancati
+# Plot della differenza normalizzita (NDVI) affiancati
 plot(ndvi2015, col=viridis(100),main="NDVI 2015")
 plot(ndvi2025, col=viridis(100),main="NDVI 2025")
 
 
-#3.Analisi NDMI (stess idrico e impatto dell'ENSO)
+# 3.Analisi NDMI (stess idrico e impatto dell'ENSO)
 
 # Calcolo NDMI 2015 2025 
 ndmi2015<-(borneo2015[["B8"]]-borneo2015[["B11"]])/(borneo2015[["B8"]]+borneo2015[["B11"]])
 ndmi2025<-(borneo2025[["B8"]]-borneo2025[["B11"]])/(borneo2025[["B8"]]+borneo2025[["B11"]])
 
-#Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
+# Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
 ndmi_diff<-ndmi2015-ndmi2025
 
 # Plot della differenza Normalizzata NDMI
@@ -120,30 +126,30 @@ plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)
 
 # 4. Classificazione delle aree vegetazionali : raggruppamento dei pixel con stessa firma spettrale in categorie
 
-#Matrice di classificazione basata sull'NDVI e determinati limiti 
+# Matrice di classificazione basata sull'NDVI e determinati limiti 
 matrice_class<-matrix(c(
  -Inf,0.4, 1, #Classe 1:Suolo nudo/Deforestazione rec
    0.4,0.7, 2, #Classe 2:Piantagioni
    0.7,Inf, 3 #Classe 3: Foresta primaria intatta
 ),ncol = 3, byrow = TRUE)
 
-#Classificazione sulla base di NDVI
+# Classificazione sulla base di NDVI
 ndvi2015_class<-classify(ndvi2015, matrice_class)
 ndvi2025_class<-classify(ndvi2025, matrice_class)
 
 colori_classi<-c("red", "yellow","darkgreen")
 
-#Visualizzazione plot accostati
-# il rosso indica il suolo privo di vegetazione a causa della deforestazione
-# il giallo, colore dominante, corrisponde alle piantagioni di palma da olio 
-# il verde scuro evidenzia a frammentazione della foresta primaria in aree localizzate
+# Visualizzazione plot accostati
+#il rosso indica il suolo privo di vegetazione a causa della deforestazione
+#il giallo, colore dominante, corrisponde alle piantagioni di palma da olio 
+#il verde scuro evidenzia a frammentazione della foresta primaria in aree localizzate
 par(mfrow=c(1,2))
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
 par(mfrow(c=(1,1)) # Reset finestra grafica
 
-##5.Analisi statistica
-#Calcolo frequenze
+# 5.Analisi statistica
+# Calcolo frequenze
 freq_2015<-freq(ndvi2015_class)
 freq_2025<-freq(ndvi2025_class)
 #Calcolo percentuali
@@ -157,7 +163,7 @@ tabella_classi<-data.frame(
 )
 print(tabella_classi))
 
-#Realizzazione di grafici a barre tramite il pacchetto ggplot2
+# Realizzazione di grafici a barre tramite il pacchetto ggplot2
 p1<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2015, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2015") + theme(axis.text.x=element_text(angle=45, hjust=1))
 p2<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2025, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
@@ -169,7 +175,7 @@ print(grafico_finale)
 
 #Analisi Multitemporale 
 
-#6.Conclsione 
+# 6.Conclusione 
 
 Dagli elevati vaori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammentazione e riduzione della loro distribuzione di foresta primaria. Inoltre, tramite l'indice NDVI e NDMI , è stato possibile evidenziare come  l'area sia stata sottoposta non solo ad una transformazione nell'utilizzo del suolo a scopo agricolo bensì a uno stress idrico implementato dalla siccità in parte dovuta alla presenza di eventi monsonici dell'ENSO. 
 Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata, la proposta di monitoraggi dei suoli adiacenti e le implicazioni sulla diversità biologica. 
