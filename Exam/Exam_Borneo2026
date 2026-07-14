@@ -48,7 +48,7 @@ list.files()
 #apertura dei pacchetti R precedentemente installati
 
 library(terra)
-library(imageRY)
+library(imageRy)
 library(viridis)
 library(ggplot2)
 library(patchwork)
@@ -158,14 +158,19 @@ tabella_classi<-data.frame(
 print(tabella_classi))
 
 #Realizzazione di grafici a barre tramite il pacchetto ggplot2
-p1<-ggplot(tabella_classi,aes(x=Classe, y=Anno2015, fill=Classe))+ geom_bar("stat=identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
+p1<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2015, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2015") + theme(axis.text.x=element_text(angle=45, hjust=1))
-p2<-ggplot(tabella_classi,aes(x=Classe, y=Anno2025, fill=Classe))+ geom_bar("stat=identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
+p2<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2025, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2025") + theme(axis.text.x=element_text(angle=45, hjust=1))
 
 #uniamo i grafici con patchwork
 grafico_finale<-p1+p2
 print(grafico_finale)
-#5.Conclsione 
-Dagli elevati vaori di NDVI e NDMI è Possile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammtazione e riduzione della loro distribuzione di foresta primaria . Inoltre tramite l'indice NDVI e NDMI è stato possibile evidenziare come  l'area sia stata sottoposta non solo ad una transformazione nell'utilizzo del suolo a scopo agricolo bensì a uno stress idrico implementato dalla siccità in parte dovuta alla presenza di eventi monsonici dell'ENSO. 
+
+#Analisi Multitemporale 
+
+#6.Conclsione 
+
+Dagli elevati vaori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammentazione e riduzione della loro distribuzione di foresta primaria. Inoltre, tramite l'indice NDVI e NDMI , è stato possibile evidenziare come  l'area sia stata sottoposta non solo ad una transformazione nell'utilizzo del suolo a scopo agricolo bensì a uno stress idrico implementato dalla siccità in parte dovuta alla presenza di eventi monsonici dell'ENSO. 
 Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata, la proposta di monitoraggi dei suoli adiacenti e le implicazioni sulla diversità biologica. 
+
