@@ -55,19 +55,19 @@ library(viridis)
 library(ggplot2)
 library(patchwork)
 
-##### Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
+### Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif") 
 
-##### Definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
+### Definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
 
-##### Realizzazione di un pannello per accostare le due immagini.
+### Realizzazione di un pannello per accostare le due immagini.
 par(mfrow=c(1,2))
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
 
-##### Sostituendo il NIR (B8) al posto del rosso
+### Sostituendo il NIR (B8) al posto del rosso
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
