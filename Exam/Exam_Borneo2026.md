@@ -11,12 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 1.Introduzione📌
 
-Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
+Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e delle torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
 Questo studio, si focalizza sull’isola del Borneo e la provincia di Riau, a Sumatra, dove l’intensità del fenomeno ha mostrato un effetto diverso in relazione alla natura pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico  El Nino-Southern Oscillation (ENSO).
-Il periodo analizzato consente di valutare la capacità di resilienza dell’ecosistema forestale in risposta da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
-La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo in quanto il clima pan tropicale del sud est asiatico espone il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche che influiscono sull’erosione del terreno privato di copertura arborea e delle radici che assicuravano la ritenzione idrica del suolo.
+Il periodo analizzato consente di valutare la capacità di resilienza dell’ecosistema forestale in risposta, da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
+La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo in quanto il clima pan tropicale del sud est asiatico espone il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche che influiscono sull’erosione del terreno, privato di copertura arborea e radici che assicuravano la ritenzione idrica del suolo.
 
-## 2. Obiettivo del progetto🎯 
+## 2. Obiettivi del progetto🎯 
 
 Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale per verificare lo stato di integrità della vegetazione perseguendo i seguenti punti:
 1)	Identificare e quantificare la perdita di copertura forestale in relazione al cambiamento nell’utilizzo del suolo a scopo monocolturale
