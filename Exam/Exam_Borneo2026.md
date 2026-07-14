@@ -6,6 +6,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Matricola n.
 
 # Analisi dello stress fisiologico ed idrico nelle foreste del Borneo, in risposta a coltivazioni di palma da olio Elaeis guineensis (2015-2025)
+
 ---
 ## 1. Introduzione📌
 
@@ -29,21 +30,21 @@ Nella seguente analisi multitemporale sono state impiegate immagini satellitari 
 
 Gli indici spettrali impiegati nello studio della vegetazione sono i seguenti:
 
----
 ### DVI (Difference Vegetation Index)
 Calcola la diffrenza lineare tra la banda del vicino infrarosso e quella del rosso.
 $DVI=NIR-RED$
 
+---
 ### NDVI (Normalized Difference Vegetation Index) 
 Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis.
-$NVI=frac{(NIR-RED)}{(NIR+RED)}
-
-### NDMI (Normalized Difference Moisture Idex)  
-Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e l’infrarosso a corto raggio (SWIR, Banda 11). 
-$
+$NDVI=\frac{(NIR-RED)}{(NIR+RED)}
 
 ---
+### NDMI (Normalized Difference Moisture Idex)  
+Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e l’infrarosso a corto raggio (SWIR, Banda 11). 
+$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}
 
+---
 ## 4. Raccolta immagini🌍
 Le immagini sono state scaricate tramite il codice Java Script attraverso il sito Google Earth Engine https://earthengine.google.com/.
 L'area indagata corrisponde alla penisola di Kalimatan nell'area meridionale del Borneo.
@@ -117,7 +118,7 @@ par(mfrow=c(1,2))
 plot(ndvi2015, col=viridis(100),main="NDVI 2015")
 plot(ndvi2025, col=viridis(100),main="NDVI 2025")
 
-
+---
 ## 7. Analisi NDMI (stess idrico e impatto dell'ENSO)
 
 ### Calcolo NDMI 2015 2025 
@@ -157,6 +158,7 @@ colori_classi<-c("red", "yellow","darkgreen")
 par(mfrow=c(1,2))
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
+
 #### Reset finestra grafica
 par(mfrow(c=(1,1)) 
 
@@ -187,16 +189,20 @@ ggtitle("Copertura suolo-2025") + theme(axis.text.x=element_text(angle=45, hjust
 grafico_finale<-p1+p2
 print(grafico_finale)
 
+---
 #### 8.Analisi Multitemporale 
 
 
+
+
+
+---
 ## 9.Limiti dell'analisi
-Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che dalla risoluzione temporale, in quanto un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale nell'area interessata.
+Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che può falsare la riflettanza, sia dalla risoluzione temporale, in quanto, un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale.
 In'oltre a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può renedere difficile in alcuni casi la distinzione tra foresta primaria e piantagioni.
 
-
+---
 ## 10.Conclusione 
-
 Dagli elevati vaori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammentazione e riduzione della loro distribuzione di foresta primaria. Inoltre, tramite l'indice NDVI e NDMI , è stato possibile evidenziare come l'area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia s La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
 Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata, la proposta di monitoraggi dei suoli adiacenti e le implicazioni sulla diversità biologica. 
 
