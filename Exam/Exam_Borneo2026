@@ -140,13 +140,13 @@ colori_classi<-c("red", "yellow","darkgreen")
 par(mfrow=c(1,2))
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
-par(mFrow(c=(1,1)) # Reset finestra grafica
+par(mfrow(c=(1,1)) # Reset finestra grafica
 
 ##5.Analisi statistica
-
+#Calcolo frequenze
 freq_2015<-freq(ndvi2015_class)
 freq_2025<-freq(ndvi2025_class)
-
+#Calcolo percentuali
 perc_2015<-freq_2015$count* 100/ncell(ndvi2015_class)
 perc_2025<-freq_2025$count* 100/ncell(ndvi2025_class)
 
