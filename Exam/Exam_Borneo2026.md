@@ -202,6 +202,9 @@ print(grafico_finale)
 Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che può falsare la riflettanza, sia dalla risoluzione temporale, in quanto, un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale.
 In'oltre a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può renedere difficile in alcuni casi la distinzione tra foresta primaria e piantagioni.
 
+## 10.il contributo al telerilevamento
+
+l'analisi 
 ---
 ## 10.Conclusione 
 Dagli elevati vaori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammentazione e riduzione della loro distribuzione di foresta primaria. Inoltre, tramite l'indice NDVI e NDMI , è stato possibile evidenziare come l'area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia s La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
