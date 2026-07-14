@@ -37,17 +37,19 @@ $DVI=NIR-RED$
 ---
 ### NDVI (Normalized Difference Vegetation Index) 
 Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis.
+
 $NDVI=\frac{(NIR-RED)}{(NIR+RED)}
 
 ---
 ### NDMI (Normalized Difference Moisture Idex)  
 Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e l’infrarosso a corto raggio (SWIR, Banda 11). 
-$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}
+
+$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$
 
 ---
 ## 4. Raccolta immagini🌍
-Le immagini sono state scaricate tramite il codice Java Script attraverso il sito Google Earth Engine https://earthengine.google.com/.
-L'area indagata corrisponde alla penisola di Kalimatan nell'area meridionale del Borneo.
+Le immagini sono state scaricate tramite il codice Java Script attraverso il sito [Google Earth Engine](https://earthengine.google.com/)
+L'area indagata corrisponde alla penisola di Kalimantan nell'area meridionale del Borneo.
 
 ---
 ## 5.Raccolta dati
