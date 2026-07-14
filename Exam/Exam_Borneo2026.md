@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 1. Introduzione📌
 
 Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e delle torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
-Questo studio, si focalizza sull’isola del Borneo e la provincia di Riau, a Sumatra, dove l’intensità del fenomeno ha mostrato un effetto diverso in relazione alla natura pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico  El Nino-Southern Oscillation (ENSO).
+Questo studio, si focalizza sull’isola del Borneo e la provincia di Riau, a Sumatra, dove l’intensità del fenomeno ha mostrato un effetto diverso in relazione alla natura pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico:"El Nino-Southern Oscillation" (ENSO).
 Il periodo analizzato consente di valutare la capacità di resilienza dell’ecosistema forestale in risposta, da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
 La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo in quanto il clima pan tropicale del sud est asiatico espone il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche che influiscono sull’erosione del terreno, privato di copertura arborea e radici che assicuravano la ritenzione idrica del suolo.
 
@@ -135,7 +135,7 @@ ndvi2025_class<-classify(ndvi2025, matrice_class)
 
 colori_classi<-c("red", "yellow","darkgreen")
 
-# Visualizzazione plot accostati
+### Visualizzazione plot accostati
 #il rosso indica il suolo privo di vegetazione a causa della deforestazione
 #il giallo, colore dominante, corrisponde alle piantagioni di palma da olio 
 #il verde scuro evidenzia a frammentazione della foresta primaria in aree localizzate
@@ -171,6 +171,11 @@ grafico_finale<-p1+p2
 print(grafico_finale)
 
 #### Analisi Multitemporale 
+
+## Limiti dell'analsi
+Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che dalla risoluzione temporale, in quanto un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale nell'area interessata.
+In'oltre a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può renedere difficiel la distinzione tra foresta primaria  e piantagioni o vegetazione rada.
+
 
 ## 10.Conclusione 
 
