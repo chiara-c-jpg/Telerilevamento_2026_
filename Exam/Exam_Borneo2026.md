@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # Analisi dello stress fisiologico ed idrico nelle foreste del Borneo, in risposta a coltivazioni di palma da olio Elaeis guineensis (2015-2025)
 
-#1.Introduzione📌
+## 1.Introduzione📌
 
 Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
 Questo studio, si focalizza sull’isola del Borneo e la provincia di Riau, a Sumatra, dove l’intensità del fenomeno ha mostrato un effetto diverso in relazione alla natura pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico  El Nino-Southern Oscillation (ENSO).
@@ -24,7 +24,7 @@ Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale
 2)	Valutare lo stress fisiologico di salute della copertura vegetale mediante indici di biomassa normalizzati (NDVI)
 3)	Analizzare la risposta allo stress idrico accentuato dall’evento climatico ENSO tramite indici di umidità fogliare e del suolo (NDMI)
 
-## Metodi ed utilizzo degli indici spettrali🛰️ 
+## 3. Metodi ed utilizzo degli indici spettrali 🛰️
 In  quest’analisi multitemporale sono state utilizzate immagini satellitari Sentinel-2 ESA, ottenute tramite Google Earth Engine. Gli indici spettrali impiegati sono i seguenti: 
 
 ##NDVI (Normalized Difference Vegetation Index) :
@@ -38,11 +38,11 @@ La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress id
 ##ANALISI CODICE R
 
 # 1.Raccolta dati 
-## Impostazione della working directory di lavoro
+#Impostazione della working directory di lavoro
 
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-## Controllare che le immagini siano salvate nella directory di lavoro 
+#Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
 
 #apertura dei pacchetti R precedentemente installati
