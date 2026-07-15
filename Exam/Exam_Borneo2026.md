@@ -3,41 +3,43 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 #### Chiara Tattini
-#### Matricola n.
+#### Matricola n.0001143886
 
 # Analisi dello stress fisiologico ed idrico nelle foreste del Borneo, in risposta a coltivazioni di palma da olio Elaeis guineensis (2015-2025)
 
 ---
 ## 1. Introduzione📌
 
-Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e delle torbiere in terreni agricoli a monocoltura di palma da olio (*Elaeis guineensis*).
-Questo studio si focalizza sulla porzione meridionale dell'isola del Borneo, in particolare dellla regione Kalimantan, dove gli effetti prodotti dal cambiamento nell'uso del suolo (*land use change*) si sono sommati ad uno dei più significativi eventi climatici di stress idrico:"El Niño-Southern Oscillation" (ENSO), il cui apice si è verificato nel 2016.
-Il periodo analizzato consente di valutare la capacità di resilienza dell’ecosistema forestale in risposta, da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
-La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo accelerato dal clima pantropicale del sud-est asiatico, esponendo il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche.
-Queste ultime influiscono sull’erosione del terreno, privato di copertura arborea e quindi di apparati radicali coinvolti nella ritenzione idrica del suolo.
+Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle **foreste tropicali** e delle torbiere in terreni agricoli a **monocoltura** di palma da olio (*Elaeis guineensis*).
+Questo studio si focalizza sulla porzione meridionale dell'isola del **Borneo**, in particolare dellla regione **Kalimantan**, dove gli effetti prodotti dal cambiamento nell'uso del suolo **(*land use change*)** si sono sommati ad uno dei più significativi eventi climatici di stress idrico:**"El Niño-Southern Oscillation"** (**ENSO**), il cui apice si è verificato nel 2016.
+Il periodo analizzato consente di valutare la capacità di **resilienza** dell’ecosistema forestale in risposta, da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
+La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo accelerato dal clima pantropicale del sud-est asiatico, esponendo il territorio a fluttuazioni climatiche date dall’alternarsi tra **siccità** stagionale e **precipitazioni monsoniche**.
+Queste ultime influiscono sull’erosione del terreno, privato di copertura arborea e quindi di apparati radicali coinvolti nella **ritenzione idrica** del suolo.
 
 ---
 ## 2. Obiettivi del progetto🎯 
 
-Mappare l'area prese in esame in relazione ai cambiamenti di copertura forestale per verificare lo stato di integrità della vegetazione perseguendo i seguenti punti:
-1)	Identificare e quantificare la perdita di copertura forestale in relazione al cambiamento nell’utilizzo del suolo a scopo monocolturale
-2) Rilevare i cambiamenti di densità vegetazionale per definire le aree soggette a deforestazione rispetto alla foresta primaria 
-2)	Valutare lo stress fisiologico di salute della copertura vegetale mediante indici di biomassa normalizzati (NDVI)
-3)	Analizzare la risposta allo stress idrico accentuato dall’evento climatico ENSO tramite indici di umidità fogliare e del suolo (NDMI)
+Mappare l'area prese in esame in relazione ai cambiamenti di **copertura forestale** per verificare lo **stato di integrità della vegetazione** perseguendo i seguenti punti:
+1)	Identificare e quantificare la **perdita di copertura forestale** in relazione al cambiamento nell’utilizzo del suolo a scopo monocolturale
+2) Rilevare i cambiamenti di densità vegetazionale per definire le aree soggette a **deforestazione** rispetto alla foresta primaria 
+2)	Valutare lo stress fisiologico di salute della copertura vegetale mediante **indici di biomassa** normalizzati (NDVI)
+3)	Analizzare la risposta allo **stress idrico** accentuato dall’evento climatico ENSO tramite indici di umidità fogliare e del suolo (NDMI)
 
 ---
 ## 3. Metodi ed dati satellitari 🛰️
-Nella seguente analisi multitemporale sono state impiegate immagini satellitari Sentinel-2 ESA, ottenute da [Google Earth Engine](https://earthengine.google.com/). Rispetto a satelliti come Lansat (risoluzione 30 m), Sentinel-2 consente una risoluzione maggiore fino a 10m per le bande del visisbile e del vicino infrarosso (NIR). La Roi (Region of Interest) comprende l'area meridioale del Borneo di Kalimantan.
+Nella seguente analisi multitemporale sono state impiegate immagini satellitari ottiche **Sar Sentinel-2 ESA**, ottenute da [Google Earth Engine](https://earthengine.google.com/).
+Rispetto a satelliti come Lansat (risoluzione 30 m), Sentinel-2 consente una risoluzione maggiore fino a **10m** per le bande del visibile e del vicino infrarosso (NIR). 
+La Roi (Region of Interest) comprende l'area meridioale del Borneo della regione Kalimantan.
 
 Gli indici spettrali impiegati nello studio della vegetazione sono i seguenti:
 
 ### DVI (Difference Vegetation Index)
-Calcola la diffrenza lineare tra la banda del vicino infrarosso e quella del rosso.
+Calcola la differenza lineare tra la banda del vicino infrarosso (NIR) e quella del rosso (RED).
 
 $$DVI=NIR-RED$$
 
 ### NDVI (Normalized Difference Vegetation Index) 
-Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di Elaeis guineensis.
+Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di (*Elaeis guineensis*).
 
 $$NDVI=\frac{(NIR-RED)}{(NIR+RED)}$$
 
@@ -218,17 +220,20 @@ print(grafico_finale)
 
 ---
 ## 9.Limiti dell'analisi
-Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che può falsare la riflettanza, sia dalla risoluzione temporale, in quanto, un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale.
-Inoltre, a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può renedere difficile in alcuni casi la distinzione tra foresta primaria e piantagioni.
+Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che può falsare la **riflettanza**, sia dalla **risoluzione temporale**, in quanto, un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale.
+Inoltre, a livello di risoluzione spaziale, sebbene la risoluzione di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può rendere difficile, in alcuni casi la distinzione tra foresta primaria e piantagioni.
 
 ## 10.il contributo al telerilevamento
 
 
 
 ---
-## 10.Conclusione e possibili sviluppi futuri 
-Dagli elevati valori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste originariamente ampiamente diffuse, abbiano subito una severa frammentazione e un forte decremento di estensione nel decennio 2015-20120.
+## 10.Conclusione e  
+Dagli elevati valori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste originariamente ampiamente diffuse, abbiano subito una severa **frammentazione** e una forte **contrazione dell'areale** di distribuzione nel decennio 2015-20120.
 Inoltre, l'uso combinato degli indici spettrali, ha permesso evidenziare come l'intera area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia stata sottoposta a stress ecologici ed antropici che hanno rivoluzionato il territorio. 
-La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
-Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata ed sulla diversità biologica delle aree connesse. 
-Un ulteriore sviluppo di tale progetto potrebbe includere uno studio comparativo con immagini satellitari della provincia di Riau, a Sumatra, al fine di valutare il grado di similiarità tra pattern ecologici di aree diverse (dinamiche di stress idrico e frammentazione dell'areale forestale), in relazione a variazioni della ritenzione idrica del suolo, in funzione dell'eterogeneità pedogenetica del substrato.
+La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai **cicli meteorologici** di siccità dell’ENSO che influiscono sulla degradazione del suolo.
+Tale frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di impiegare strategie di monitraggio dell'area interessata e sulla diversità biologica delle aree connesse. 
+
+**Possibili sviluppi futuri**
+Un ulteriore sviluppo del progetto potrebbe includere uno studio comparativo tra le immagini satellitari multitemporali  della provincia di Riau, a Sumatra e quella del Boneo della regione di Kalimantan, al fine di valutare il grado di similiarità tra pattern ecologici di aree diverse. 
+Ciò consentirebbe di considerare l'andamento dei del nel corso dell'arco temporale le dinamiche di stress idrico e frammentazione dell'areale forestale), in relazione a variazioni della ritenzione idrica del suolo, in funzione dell'eterogeneità pedogenetica del substrato.
