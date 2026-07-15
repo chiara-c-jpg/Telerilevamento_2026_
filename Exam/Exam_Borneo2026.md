@@ -10,10 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ---
 ## 1. Introduzione📌
 
-Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e delle torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
-Questo studio, si focalizza sulla porzione meridionale dell'isola del Borneo, in particolare sulla regione Kalimantan, dove lo use land change ha pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico:"El Nino-Southern Oscillation" (ENSO).
+Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e delle torbiere in terreni agricoli a monocoltura di palma da olio (*Elaeis guineensis*).
+Questo studio si focalizza sulla porzione meridionale dell'isola del Borneo, in particolare dellla regione Kalimantan, dove gli effetti prodotti dal cambiamento nell'uso del suolo (*land use change*) si sono sommati ad uno dei più significativi eventi climatici di stress idrico:"El Niño-Southern Oscillation" (ENSO), il cui apice si è verificato nel 2016.
 Il periodo analizzato consente di valutare la capacità di resilienza dell’ecosistema forestale in risposta, da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
-La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo in quanto il clima pan tropicale del sud est asiatico espone il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche che influiscono sull’erosione del terreno, privato di copertura arborea e radici che assicuravano la ritenzione idrica del suolo.
+La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo accelerato dal clima pantropicale del sud-est asiatico, esponendo il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche.
+Queste ultime influiscono sull’erosione del terreno, privato di copertura arborea e quindi di apparati radicali coinvolti nella ritenzione idrica del suolo.
 
 ---
 ## 2. Obiettivi del progetto🎯 
@@ -89,8 +90,7 @@ plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False C
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 
 ---
-
-### visualizzazionen separata delle quattro bande per il 2015
+### visualizzazionen suddivisa per le quattro bande per l'anno 2015
 im.multiframe(1,2)
 plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
 plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
@@ -220,9 +220,11 @@ print(grafico_finale)
 ---
 ## 9.Limiti dell'analisi
 Nonostante la precisione delle immagini Sar-Sentinel 2, l'analisi può essere influenzata sia dalla copertura nuvolosa del Borneo che può falsare la riflettanza, sia dalla risoluzione temporale, in quanto, un'unica immagine per anno non consente di prevedere il fenomeno a livello stagionale.
-In'oltre a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può renedere difficile in alcuni casi la distinzione tra foresta primaria e piantagioni.
+Inoltre, a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 10 metri di ciascun pixel sia esaustiva, in foreste particolarmente frammentate il fenomeno del "mixel pixel" può renedere difficile in alcuni casi la distinzione tra foresta primaria e piantagioni.
 
 ## 10.il contributo al telerilevamento
+
+
 
 l'analisi 
 ---
@@ -231,4 +233,4 @@ Dagli elevati valori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste
 Inoltre, l'uso combinato degli indici spettrali, ha permesso evidenziare come l'intera area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia stata sottoposta a stress ecologici ed antropici che hanno rivoluzionato il territorio. 
 La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
 Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata ed sulla diversità biologica delle aree connesse. 
-Un ulteriore sviluppo di tale progetto potrebbe includere uno studio comparativo con immagini satellitari della provincia di Riau,a Sumatra, al fine di valutare il grado di similiarità tra pattern ecologici di aree diverse (dinamiche di stress idrico e frammentazione dell'areale forestale) in relazione a variazioni della ritenzione idrica del suolo in funzione dell'eterogeneità pedogenetica del substrato.
+Un ulteriore sviluppo di tale progetto potrebbe includere uno studio comparativo con immagini satellitari della provincia di Riau, a Sumatra, al fine di valutare il grado di similiarità tra pattern ecologici di aree diverse (dinamiche di stress idrico e frammentazione dell'areale forestale), in relazione a variazioni della ritenzione idrica del suolo, in funzione dell'eterogeneità pedogenetica del substrato.
