@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 1. Introduzione📌
 
 Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle foreste tropicali e delle torbiere in terreni agricoli a monocoltura di palma da olio (Elaeis guineensis).
-Questo studio, si focalizza sull’isola del Borneo e la provincia di Riau, a Sumatra, dove l’intensità del fenomeno ha mostrato un effetto diverso in relazione alla natura pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico:"El Nino-Southern Oscillation" (ENSO).
+Questo studio, si focalizza sulla porzione meridionale dell'isola del Borneo, in particolare sulla regione Kalimantan, dove lo use land change ha pedologica del substrato in un intervallo temporale (2015-2030) in cui si è verificato uno più significativi eventi climatici di stress idrico:"El Nino-Southern Oscillation" (ENSO).
 Il periodo analizzato consente di valutare la capacità di resilienza dell’ecosistema forestale in risposta, da un lato ai cicli di eventi climatici dell’ENSO e, dall’altro, dall’impatto antropico legato alla standardizzazione monocolturale.
 La transizione da foresta primaria a piantagione monocolturale determina un impatto ecologico ed erosivo in quanto il clima pan tropicale del sud est asiatico espone il territorio a fluttuazioni climatiche date dall’alternarsi tra siccità stagionale e precipitazioni monsoniche che influiscono sull’erosione del terreno, privato di copertura arborea e radici che assicuravano la ritenzione idrica del suolo.
 
@@ -226,8 +226,9 @@ In'oltre a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 1
 
 l'analisi 
 ---
-## 10.Conclusione 
-Dagli elevati vaori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammentazione e riduzione della loro distribuzione di foresta primaria. Inoltre, tramite l'indice NDVI e NDMI , è stato possibile evidenziare come l'area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia s La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
-Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata, la proposta di monitoraggi dei suoli adiacenti e le implicazioni sulla diversità biologica. 
-Un ulteriore sviluppo di tale progetto potrebbe includere uno studio comparativo con immahinisatellitari della provincia di Riau a Sumatra al fine di valutare l'andamento delle dinamiche di stress idrico e frammentazione forestare e il loro pattern simile o differente.
-
+## 10.Conclusione e possibili sviluppi futuri 
+Dagli elevati valori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste originariamente ampiamente diffuse, abbiano subito una severa frammentazione e un forte decremento di estensione nel decennio 2015-20120.
+Inoltre, l'uso combinato degli indici spettrali, ha permesso evidenziare come l'intera area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia stata sottoposta a stress ecologici ed antropici che hanno rivoluzionato il territorio. 
+La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
+Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata ed sulla diversità biologica delle aree connesse. 
+Un ulteriore sviluppo di tale progetto potrebbe includere uno studio comparativo con immagini satellitari della provincia di Riau,a Sumatra, al fine di valutare il grado di similiarità tra pattern ecologici di aree diverse (dinamiche di stress idrico e frammentazione dell'areale forestale) in relazione a variazioni della ritenzione idrica del suolo in funzione dell'eterogeneità pedogenetica del substrato.
