@@ -229,4 +229,5 @@ l'analisi
 ## 10.Conclusione 
 Dagli elevati vaori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste ampliamente diffuse hanno subito una frammentazione e riduzione della loro distribuzione di foresta primaria. Inoltre, tramite l'indice NDVI e NDMI , è stato possibile evidenziare come l'area, sottoposta ad una transformazione nell'utilizzo del suolo a scopo agricolo, sia s La riduzione dei valori di NDMI indica copertura vegetale sottoposta a stress idrico, periodicamente influenzata dai cicli meteorologici di siccità dell’ENSO e condizionata dalla degradazione del suolo.
 Questa frammantazione dell'ecosistema forestale compromette l'integrità degli habitat locali ed implica la necessità di stabilire strategie di monitraggio dell'area interessata, la proposta di monitoraggi dei suoli adiacenti e le implicazioni sulla diversità biologica. 
+Un ulteriore sviluppo di tale progetto potrebbe includere uno studio comparativo con immahinisatellitari della provincia di Riau a Sumatra al fine di valutare l'andamento delle dinamiche di stress idrico e frammentazione forestare e il loro pattern simile o differente.
 
