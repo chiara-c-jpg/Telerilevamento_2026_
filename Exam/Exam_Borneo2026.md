@@ -48,8 +48,7 @@ $$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$$
 
 ---
 ## 4. Raccolta immagini🌍
-Le immagini sono state scaricate tramite il codice Java Script attraverso il sito [Google Earth Engine](https://earthengine.google.com/)
-L'area indagata corrisponde alla penisola di Kalimantan nell'area meridionale del Borneo.
+Le immagini sono state scaricate tramite codice Java Script allegato, tramite il sito [Google Earth Engine](https://earthengine.google.com/)
 
 ---
 ## 5.Raccolta dati
@@ -226,7 +225,6 @@ Inoltre, a livello di risoluzione spaziale, sebbene la risoluzione spaziale di 1
 
 
 
-l'analisi 
 ---
 ## 10.Conclusione e possibili sviluppi futuri 
 Dagli elevati valori di NDVI e NDMI è possibile dedurre che nel 2015 le foreste originariamente ampiamente diffuse, abbiano subito una severa frammentazione e un forte decremento di estensione nel decennio 2015-20120.
