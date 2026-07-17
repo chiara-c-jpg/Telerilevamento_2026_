@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Chiara Tattini
 #### Matricola n.0001143886
 
-# Analisi comparitiva multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis guineensis (2015-2025)🌴
+# Analisi comparativa multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis guineensis (2015-2025)🌴
 
 ---
 ## 1. Introduzione📌
@@ -51,6 +51,14 @@ $$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$$
 ---
 ## 4. Raccolta immagini🌍
 Le immagini sono state scaricate tramite codice Java Script allegato, tramite il sito [Google Earth Engine](https://earthengine.google.com/)
+
+| **Banda** | **Descrizione** | **Utilizzo** |
+|:---:|:---|:---|
+| **B2** | Blu | Composizione RGB (True Color) |
+| **B3** | Verde | Composizione RGB (True Color) |
+| **B4** | Rosso | Composizione RGB (True Color), Calcolo DVI/NDVI |
+| **B8** | Vicino Infrarosso (NIR) | Calcolo DVI, NDVI, NDMI |
+| **B11** | SWIR 1 | Calcolo NDMI (Stress Idrico) |
 
 ---
 ## 5.Raccolta dati
