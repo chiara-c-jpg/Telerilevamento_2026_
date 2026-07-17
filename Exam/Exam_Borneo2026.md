@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # Analisi comparativa multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis guineensis (2015-2025)🌴
 
 ---
-## 1. Introduzione📌
+# 1. Introduzione📌
 
 Uno dei principali fenomeni di cambiamento nell’utilizzo del suolo nel sud-est asiatico è rappresentato dalla conversione su vasta scala delle **foreste tropicali** e delle torbiere in terreni agricoli a **monocoltura** di palma da olio (*Elaeis guineensis*).
 Questo studio si focalizza sulla porzione meridionale dell'isola del **Borneo**, in particolare dellla regione **Kalimantan**, dove gli effetti prodotti dal cambiamento nell'uso del suolo **(*land use change*)** si sono sommati ad uno dei più significativi eventi climatici di stress idrico:**"El Niño-Southern Oscillation"** (**ENSO**), il cui apice si è verificato nel 2016.
@@ -17,7 +17,7 @@ La transizione da foresta primaria a piantagione monocolturale determina un impa
 Queste ultime influiscono sull’erosione del terreno, privato di copertura arborea e quindi di apparati radicali coinvolti nella **ritenzione idrica** del suolo.
 
 ---
-## 2. Obiettivi del progetto🎯 
+# 2. Obiettivi del progetto🎯 
 
 Mappare l'area prese in esame in relazione ai cambiamenti di **copertura forestale** per verificare lo **stato di integrità della vegetazione** perseguendo i seguenti punti:
 1)	Identificare e quantificare la **perdita di copertura forestale** in relazione al cambiamento nell’utilizzo del suolo a scopo monocolturale
@@ -26,24 +26,24 @@ Mappare l'area prese in esame in relazione ai cambiamenti di **copertura foresta
 3)	Analizzare la risposta allo **stress idrico** accentuato dall’evento climatico ENSO tramite indici di umidità fogliare e del suolo (NDMI)
 
 ---
-## 3. Metodi ed dati satellitari 🛰️
+# 3. Metodi ed dati satellitari 🛰️
 Nella seguente analisi multitemporale sono state impiegate immagini satellitari ottiche **Sar Sentinel-2 ESA**, ottenute da [Google Earth Engine](https://earthengine.google.com/).
 Rispetto a satelliti come Lansat (risoluzione 30 m), Sentinel-2 consente una risoluzione maggiore fino a **10m** per le bande del visibile e del vicino infrarosso (NIR). 
 La Roi (Region of Interest) comprende l'area meridioale del Borneo della regione Kalimantan.
 
 Gli indici spettrali impiegati nello studio della vegetazione sono i seguenti:
 
-### DVI (Difference Vegetation Index)
+## DVI (Difference Vegetation Index)
 Calcola la differenza lineare tra la banda del vicino infrarosso (NIR) e quella del rosso (RED).
 
 $$DVI=NIR-RED$$
 
-### NDVI (Normalized Difference Vegetation Index) 
+## NDVI (Normalized Difference Vegetation Index) 
 Valuta la  biomassa e la densità della chioma consentendo di evidenziare le aree che hanno subito deforestazione a favore delle piantagioni di (*Elaeis guineensis*).
 
 $$NDVI=\frac{(NIR-RED)}{(NIR+RED)}$$
 
-### NDMI (Normalized Difference Moisture Idex)  
+## NDMI (Normalized Difference Moisture Idex)  
 Consente valutare lo stess idrico tramite un confronto tra il vicino infrarosso (NIR) e l’infrarosso a corto raggio (SWIR, Banda 11). 
 
 $$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$$
@@ -61,106 +61,91 @@ Le immagini sono state scaricate tramite codice Java Script allegato, tramite il
 | **B11** | SWIR 1 | Calcolo NDMI (Stress Idrico) |
 
 ---
-## 5.Raccolta dati
-
-### Impostazione della directory di lavoro
+## 5.Raccolta e preparazione dati🧪
 ```r
+## Impostazione della directory di lavoro
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
-```
-```r
+
 #Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
-```
-#Apertura dei pacchetti installati
-```r
+
+# Apertura dei pacchetti installati
 library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
 library(imageRy)    # Analisi immagini satellitari
 library(viridis)    # Palette colori per gli indici
 library(ggplot2)    # Creazione grafici
 library(patchwork)  # Composizione ed affiancamento dei grafici
-```
----
 
 # Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
-```r
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif")
+
+# Definizione palette imageRy 
+cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione e "blu" il guadagno.
 ```
----
-# Definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
+### Visualizzazione RGB
 ```r
-cl_diff<-colorRampPalette(c("red","white","blue"))((100))
-```
----
-# Realizzazione di un pannello per accostare le due immagini.
-```r
+#Realizzazione di un pannello per accostare le due immagini.
 im.multiframe(1,2)
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
-```
----
-# Sostituendo il NIR (B8) al posto del rosso
-```r
+
+#Sostituzione del vicino infrarosso NIR (B8) al posto del rosso
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
-```
----
-# Visualizzazionen suddivisa per le quattro bande per l'anno 2015
-```r
+
+#Visualizzazione suddivisa per le quattro bande per l'anno 2015
 im.multiframe(1,2)
-plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
+plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))# banda 
 plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
 plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
 plot(Borneo2015[["B1"]], main="B4 - NIR 2015", col= magma(100))
-```
+
 # Visualizzazione separata delle quattro bande per il 2025
-```r
 im.multiframe(1,2)
 plot(Borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(Borneo2025[["B3"]], main="B4 - Verde 2025", col= magma(100))
 plot(Borneo2025[["B2"]], main="B4 - Blu 2025", col= magma(100))
 plot(Borneo2025[["B1"]], main="B4 - NIR 2025", col= magma(100))
-```
+
 # Reset pannello grafico singolo
-```r
 im.multiframe(1,1)
-```
----
+ ```
 ## 6.Analisi DVI (Difference Vegetation INDEX)
 ```r
 ### Calcolo DVI per il 2015 e il 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015[["B4"]]
 dvi2025<-borneo2025[["B8"]]-borneo2025[["B4"]]
 ```
-### Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
+## Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
 ```r
 dvi_diff<-dvi2015-dvi2025
 ```
-### Impostazione un unico schermo
+## Impostazione un unico schermo
 ```r
 par(mfrow=c(1,1))
 ```
-### Grafico della differenza
+## Grafico della differenza
 #il rosso indica dove il vigore vegetativo è signfcativamente calato,
 #il bianco le aree stabili, mentre il blu il leggero aumento di ricrescita stagionale
 ```r
 plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
 ```
-### Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
+## Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
 ndvi2015<-(borneo2015[["B8"]]-borneo2015[["B4"]])/(borneo2015[["B8"]]+borneo2015[["B4"]])
 ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025[["B4"]])
 
-### Calcolo della differenza NDVI
+## Calcolo della differenza NDVI
 ```r
 ndvi_difference<-ndvi2015-ndvi2025
 ```
-### Impostazione di un solo schermo per i due NDVI accostati
+## Impostazione di un solo schermo per i due NDVI accostati
 ```r
 par(mfrow=c(1,2))
 ```
 
-### Plot della differenza normalizzita (NDVI) affiancati
+## Plot della differenza normalizzita (NDVI) affiancati
 ```r
 plot(ndvi2015, col=viridis(100),main="NDVI 2015")
 plot(ndvi2025, col=viridis(100),main="NDVI 2025")
@@ -168,23 +153,23 @@ plot(ndvi2025, col=viridis(100),main="NDVI 2025")
 ---
 ## 7. Analisi NDMI (stess idrico e impatto dell'ENSO)
 
-### Calcolo NDMI 2015 2025
+## Calcolo NDMI 2015 2025
 ```r
 ndmi2015<-(borneo2015[["B8"]]-borneo2015[["B11"]])/(borneo2015[["B8"]]+borneo2015[["B11"]])
 ndmi2025<-(borneo2025[["B8"]]-borneo2025[["B11"]])/(borneo2025[["B8"]]+borneo2025[["B11"]])
 ```
-### Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
+## Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
 ```r
 ndmi_diff<-ndmi2015-ndmi2025
 ```
 
-### Plot della differenza Normalizzata NDMI
+## Grafico differenza normalizzata NDMI
 #### Le aree blu indicano valori pos dell'NDMI, quindi la perdita di umidità nella vetazione tra IL 2015 ed il 2025.
 #### Le aree rosse indicano valori negativi delL'indice NDMI l'aumneto di umidità nella vegetazione condizionata dall'ENSO.
 #### Le aree bianche indicano dove il livello di NDMI è rimasto invariato.
 ```r
-im.multiframe(1,1)
-plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)")
+im.multiframe(1,1) 
+plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)") # Plot della differenza Normalizzata NDMI
 ```
 ---
 ## 8. Classificazione delle aree vegetazionali : raggruppamento dei pixel con stessa firma spettrale in categorie
@@ -231,32 +216,31 @@ freq_2025<-freq(ndvi2025_class)
 perc_2015<-freq_2015$count* 100/ncell(ndvi2015_class)
 perc_2025<-freq_2025$count* 100/ncell(ndvi2025_class)
 ```
-#tabella di classificazione 
+
 tabella_classi<-data.frame(
  Classe=c("Suolo Nudo","Piantagioni","Foresta Primaria")
  Anno_2015=round(perc_2015,2)
  Anno_2025=round(perc_2025,2)
 )
-print(tabella_classi))
+print(tabella_classi)) #tabella di classificazione 
 ```
-### Realizzazione di grafici a barre tramite il pacchetto ggplot2
+## Realizzazione di grafici a barre tramite il pacchetto ggplot2
 ```r
 p1<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2015, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2015") + theme(axis.text.x=element_text(angle=45, hjust=1))
 p2<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2025, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2025") + theme(axis.text.x=element_text(angle=45, hjust=1))
 ```
-### Unione dei grafici con il patchwork
+
 ```r
-grafico_finale<-p1+p2
+grafico_finale<-p1+p2 #Unione dei grafici con il patchwork
 print(grafico_finale)
-```
-# Creazione della tabella di Sumatra
+
 tabella_classi_sumatra <- data.frame(
   Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
   Anno_2015 = round(perc_sum2015, 2),
   Anno_2025 = round(perc_sum2025, 2)
-)
+) # Creazione della tabella di Sumatra
 ```r
 # Preparazione dati per il grafico (aggiungiamo la colonna 'Regione')
 # NB: Assicurati di aver già fatto girare la parte del Borneo che crea 'tabella_classi'
