@@ -50,7 +50,7 @@ $$NDMI=\frac{(NIR-SWIR)}{(NIR+SWIR)}$$
 
 ---
 ## 4. Raccolta immagini🌍
-Le immagini sono state scaricate tramite codice Java Script allegato, tramite il sito [Google Earth Engine](https://earthengine.google.com/)
+Le immagini sono state scaricate tramite codice Java Script allegato, tramite il sito [Google Earth Engine](https://earthengine.google.com/), con risoluzione spaziale di 20m per identificare meglio le piantagioni di palma da olio.
 
 | **Banda** | **Descrizione** | **Utilizzo** |
 |:---:|:---|:---|
@@ -64,18 +64,20 @@ Le immagini sono state scaricate tramite codice Java Script allegato, tramite il
 ## 5.Raccolta dati
 
 ### Impostazione della directory di lavoro
+```r
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-### Controllare che le immagini siano salvate nella directory di lavoro 
+#Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
 
-### Apertura dei pacchetti R precedentemente installati
-library(terra)
-library(imageRy)
-library(viridis)
-library(ggplot2)
-library(patchwork)
+#Apertura dei pacchetti installati
+library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
+library(imageRy)    # Analisi immagini satellitari
+library(viridis)    # Palette colori per gli indici
+library(ggplot2)    # Creazione grafici
+library(patchwork)  # Composizione ed affiancamento dei grafici
 
+```
 ---
 ### Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
