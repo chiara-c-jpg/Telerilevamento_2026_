@@ -81,32 +81,32 @@ library(patchwork)  # Composizione ed affiancamento dei grafici
 ```
 ---
 
-### Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
+# Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
 ```r
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
-borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif") 
+borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif")
 ```
 ---
-### Definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
+# Definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
 ```r
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
 ```
 ---
-### Realizzazione di un pannello per accostare le due immagini.
+# Realizzazione di un pannello per accostare le due immagini.
 ```r
 im.multiframe(1,2)
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
 ```
 ---
-### Sostituendo il NIR (B8) al posto del rosso
+# Sostituendo il NIR (B8) al posto del rosso
 ```r
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 ```
 ---
-### visualizzazionen suddivisa per le quattro bande per l'anno 2015
+# Visualizzazionen suddivisa per le quattro bande per l'anno 2015
 ```r
 im.multiframe(1,2)
 plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
@@ -114,7 +114,7 @@ plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
 plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
 plot(Borneo2015[["B1"]], main="B4 - NIR 2015", col= magma(100))
 ```
-### visualizzazione separata delle quattro bande per il 2025
+# Visualizzazione separata delle quattro bande per il 2025
 ```r
 im.multiframe(1,2)
 plot(Borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
@@ -122,7 +122,7 @@ plot(Borneo2025[["B3"]], main="B4 - Verde 2025", col= magma(100))
 plot(Borneo2025[["B2"]], main="B4 - Blu 2025", col= magma(100))
 plot(Borneo2025[["B1"]], main="B4 - NIR 2025", col= magma(100))
 ```
-#### reset pannello grafico singolo
+# Reset pannello grafico singolo
 ```r
 im.multiframe(1,1)
 ```
