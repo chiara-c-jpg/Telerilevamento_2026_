@@ -251,6 +251,53 @@ ggtitle("Copertura suolo-2025") + theme(axis.text.x=element_text(angle=45, hjust
 grafico_finale<-p1+p2
 print(grafico_finale)
 ```
+# Creazione della tabella di Sumatra
+tabella_classi_sumatra <- data.frame(
+  Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
+  Anno_2015 = round(perc_sum2015, 2),
+  Anno_2025 = round(perc_sum2025, 2)
+)
+```r
+# Preparazione dati per il grafico (aggiungiamo la colonna 'Regione')
+# NB: Assicurati di aver già fatto girare la parte del Borneo che crea 'tabella_classi'
+tabella_classi$Regione <- "Borneo (Kalimantan)"
+tabella_classi_sumatra$Regione <- "Sumatra (Riau)"
+```
+```r
+# Uniamo le due tabelle in un unico dataframe
+dati_confronto <- rbind(tabella_classi, tabella_classi_sumatra)
+```
+```r
+# Grafico 2015: Borneo vs Sumatra
+p_comp_2015 <- ggplot(dati_confronto, aes(x=Classe, y=Anno_2015, fill=Regione)) +
+  geom_bar(stat="identity", position="dodge", color="black") +
+  scale_fill_manual(values=c("Borneo (Kalimantan)" = "darkorange", "Sumatra (Riau)" = "purple")) +
+  ylim(0, 100) +
+  ggtitle("Confronto Copertura - 2015") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```r
+# Grafico 2025: Borneo vs Sumatra
+p_comp_2025 <- ggplot(dati_confronto, aes(x=Classe, y=Anno_2025, fill=Regione)) +
+  geom_bar(stat="identity", position="dodge", color="black") +
+  scale_fill_manual(values=c("Borneo (Kalimantan)" = "darkorange", "Sumatra (Riau)" = "purple")) +
+  ylim(0, 100) +
+  ggtitle("Confronto Copertura - 2025") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+```r
+# 8. Unione dei due grafici con patchwork
+grafico_confronto_finale <- p_comp_2015 + p_comp_2025
+print(grafico_confronto_finale)
+```
+
+
+
+
+
+
 ---
 #### 8.Analisi Multitemporale 
 
