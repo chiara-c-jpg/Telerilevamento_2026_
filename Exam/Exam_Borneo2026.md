@@ -66,161 +66,191 @@ Le immagini sono state scaricate tramite codice Java Script allegato, tramite il
 ### Impostazione della directory di lavoro
 ```r
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
-
+```
+```r
 #Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
-
+```
 #Apertura dei pacchetti installati
+```r
 library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
 library(imageRy)    # Analisi immagini satellitari
 library(viridis)    # Palette colori per gli indici
 library(ggplot2)    # Creazione grafici
 library(patchwork)  # Composizione ed affiancamento dei grafici
-
 ```
 ---
+
 ### Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
+```r
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif") 
-
+```
 ---
 ### Definizione palette imageRy in cui "red" indica la perdita di vegetazione e "blu" il guadagno.
+```r
 cl_diff<-colorRampPalette(c("red","white","blue"))((100))
-
+```
 ---
 ### Realizzazione di un pannello per accostare le due immagini.
+```r
 im.multiframe(1,2)
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
-
-
+```
 ---
 ### Sostituendo il NIR (B8) al posto del rosso
+```r
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
-
+```
 ---
 ### visualizzazionen suddivisa per le quattro bande per l'anno 2015
+```r
 im.multiframe(1,2)
 plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
 plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
 plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
 plot(Borneo2015[["B1"]], main="B4 - NIR 2015", col= magma(100))
-
+```
 ### visualizzazione separata delle quattro bande per il 2025
+```r
 im.multiframe(1,2)
 plot(Borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(Borneo2025[["B3"]], main="B4 - Verde 2025", col= magma(100))
 plot(Borneo2025[["B2"]], main="B4 - Blu 2025", col= magma(100))
 plot(Borneo2025[["B1"]], main="B4 - NIR 2025", col= magma(100))
-
+```
 #### reset pannello grafico singolo
+```r
 im.multiframe(1,1)
-
+```
 ---
 ## 6.Analisi DVI (Difference Vegetation INDEX)
-
+```r
 ### Calcolo DVI per il 2015 e il 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015[["B4"]]
 dvi2025<-borneo2025[["B8"]]-borneo2025[["B4"]]
-
+```
 ### Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
+```r
 dvi_diff<-dvi2015-dvi2025
-
+```
 ### Impostazione un unico schermo
+```r
 par(mfrow=c(1,1))
-
+```
 ### Grafico della differenza
 #il rosso indica dove il vigore vegetativo è signfcativamente calato,
 #il bianco le aree stabili, mentre il blu il leggero aumento di ricrescita stagionale
+```r
 plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
-
+```
 ### Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
 ndvi2015<-(borneo2015[["B8"]]-borneo2015[["B4"]])/(borneo2015[["B8"]]+borneo2015[["B4"]])
 ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025[["B4"]])
 
-### Calcolo della differenza NDVI 
+### Calcolo della differenza NDVI
+```r
 ndvi_difference<-ndvi2015-ndvi2025
-
+```
 ### Impostazione di un solo schermo per i due NDVI accostati
+```r
 par(mfrow=c(1,2))
+```
 
 ### Plot della differenza normalizzita (NDVI) affiancati
+```r
 plot(ndvi2015, col=viridis(100),main="NDVI 2015")
 plot(ndvi2025, col=viridis(100),main="NDVI 2025")
-
+```
 ---
 ## 7. Analisi NDMI (stess idrico e impatto dell'ENSO)
 
-### Calcolo NDMI 2015 2025 
+### Calcolo NDMI 2015 2025
+```r
 ndmi2015<-(borneo2015[["B8"]]-borneo2015[["B11"]])/(borneo2015[["B8"]]+borneo2015[["B11"]])
 ndmi2025<-(borneo2025[["B8"]]-borneo2025[["B11"]])/(borneo2025[["B8"]]+borneo2025[["B11"]])
-
+```
 ### Calcolo la diffrenza NDVI per quantificare la peridita di vegetazione 
+```r
 ndmi_diff<-ndmi2015-ndmi2025
+```
 
 ### Plot della differenza Normalizzata NDMI
 #### Le aree blu indicano valori pos dell'NDMI, quindi la perdita di umidità nella vetazione tra IL 2015 ed il 2025.
 #### Le aree rosse indicano valori negativi delL'indice NDMI l'aumneto di umidità nella vegetazione condizionata dall'ENSO.
 #### Le aree bianche indicano dove il livello di NDMI è rimasto invariato.
+```r
 im.multiframe(1,1)
 plot(ndmi_diff,col=cl_diff,main="Variazione dello stress idrico NDMI (2015-2025)")
-
+```
 ---
 ## 8. Classificazione delle aree vegetazionali : raggruppamento dei pixel con stessa firma spettrale in categorie
 
 ### Matrice di classificazione basata sull'NDVI e determinati limiti 
+```r
 matrice_class<-matrix(c(
  -Inf,0.4, 1, #Classe 1:Suolo nudo/Deforestazione rec
    0.4,0.7, 2, #Classe 2:Piantagioni
    0.7,Inf, 3 #Classe 3: Foresta primaria intatta
 ),ncol = 3, byrow = TRUE)
+```
 
 ### Classificazione sulla base di NDVI
+```r
 ndvi2015_class<-classify(ndvi2015, matrice_class)
 ndvi2025_class<-classify(ndvi2025, matrice_class)
-
+```
 colori_classi<-c("red", "yellow","darkgreen")
 
 ### Visualizzazione plot accostati
 ##### il rosso indica il suolo privo di vegetazione a causa della deforestazione
 ##### il giallo, colore dominante, corrisponde alle piantagioni di palma da olio 
 ##### il verde scuro evidenzia a frammentazione della foresta primaria in aree localizzate
+```r
 par(mfrow=c(1,2))
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015")
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025")
-
+```
 #### Reset finestra grafica
-par(mfrow(c=(1,1)) 
+```r
+par(mfrow(c=(1,1))
+```
 
 ---
 ## 9.Analisi statistica e multitemporale
 ### Calcolo frequenze
+```r
 freq_2015<-freq(ndvi2015_class)
 freq_2025<-freq(ndvi2025_class)
-
+```
 ### Calcolo percentuali
+```r
 perc_2015<-freq_2015$count* 100/ncell(ndvi2015_class)
 perc_2025<-freq_2025$count* 100/ncell(ndvi2025_class)
-
+```
+#tabella di classificazione 
 tabella_classi<-data.frame(
  Classe=c("Suolo Nudo","Piantagioni","Foresta Primaria")
  Anno_2015=round(perc_2015,2)
  Anno_2025=round(perc_2025,2)
 )
 print(tabella_classi))
-
+```
 ### Realizzazione di grafici a barre tramite il pacchetto ggplot2
+```r
 p1<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2015, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2015") + theme(axis.text.x=element_text(angle=45, hjust=1))
 p2<-ggplot(tabella_classi, aes(x=Classe, y=Anno_2025, fill=Classe))+ geom_bar(stat="identity") + scale_fill_manual(values=colori_classi) + ylim(0,100 )+
 ggtitle("Copertura suolo-2025") + theme(axis.text.x=element_text(angle=45, hjust=1))
-
+```
 ### Unione dei grafici con il patchwork
+```r
 grafico_finale<-p1+p2
 print(grafico_finale)
-
+```
 ---
 #### 8.Analisi Multitemporale 
 
