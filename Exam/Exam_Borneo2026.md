@@ -5,7 +5,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Chiara Tattini
 #### Matricola n.0001143886
 
-# Analisi dello stress fisiologico ed idrico nelle foreste del Borneo, in risposta a coltivazioni di palma da olio Elaeis guineensis (2015-2025)
+# Analisi comparitiva multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis guineensis (2015-2025)🌴
 
 ---
 ## 1. Introduzione📌
