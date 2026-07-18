@@ -91,7 +91,6 @@ par(mfrow=c(1, 2))
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2015 - True Color")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - True Color")
 ```
-
 <img width="750" height="450" alt="Borneo True Color 2015- 2025" src="https://github.com/user-attachments/assets/1c5fc790-3f79-40ef-b1d5-21cedaf55b25" />
 
 ### Visualizzazione False Color (Infrarosso - NIR)
@@ -113,15 +112,25 @@ plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
 plot(Borneo2015[["B1"]], main="B4 - NIR 2015", col= magma(100))
 
 # Visualizzazione separata delle quattro bande per il 2025
-im.multiframe(1,2)
-plot(Borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
-plot(Borneo2025[["B3"]], main="B4 - Verde 2025", col= magma(100))
-plot(Borneo2025[["B2"]], main="B4 - Blu 2025", col= magma(100))
-plot(Borneo2025[["B1"]], main="B4 - NIR 2025", col= magma(100))
+```r
+# 1. Pulisce eventuali impostazioni di default
+par(mfrow=c(1, 1))
 
-# Reset pannello grafico singolo
-im.multiframe(1,1)
- ```
+# 2. Forza la creazione del pannello 2x2 (due sopra, due sotto)
+par(mfrow=c(2, 2)) 
+
+# 3.Plot delle immagini per ogni banda
+plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
+plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
+plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
+plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
+
+
+
+
+
+
+
 ## 6.Analisi DVI (Difference Vegetation INDEX)
 ```r
 ### Calcolo DVI per il 2015 e il 2025
