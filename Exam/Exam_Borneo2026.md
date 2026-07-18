@@ -1,3 +1,4 @@
+<img width="1125" height="600" alt="Plot delle bande 2025 Borneo" src="https://github.com/user-attachments/assets/4ffe98c5-b18b-45e8-a799-54aaf01b601d" />
 
 #### Telerilevamento geo-ecologico in R
 #### Chiara Tattini
@@ -124,7 +125,7 @@ plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
 plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
 plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
-
+```
 
 
 
