@@ -90,11 +90,15 @@ par(mfrow=c(1, 2))
 # Plot delle immagini RGB con i colori reali (True Color)
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2015 - True Color")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - True Color")
+```
+
+<img width="750" height="450" alt="Borneo True Color 2015- 2025" src="https://github.com/user-attachments/assets/1c5fc790-3f79-40ef-b1d5-21cedaf55b25" />
 
 #Sostituzione del vicino infrarosso NIR (B8) al posto del rosso
 par(mfrow=c(1,1))
 plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
+
 
 #Visualizzazione suddivisa per le quattro bande per l'anno 2015
 par(mfrow=c(1,2))
