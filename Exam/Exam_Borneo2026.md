@@ -1,9 +1,8 @@
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+#### Telerilevamento geo-ecologico in R
 #### Chiara Tattini
 #### Matricola n.0001143886
+
 
 # Analisi comparativa multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis guineensis (2015-2025)🌴
 
@@ -83,12 +82,14 @@ borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.
 # Definizione palette imageRy 
 cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione e "blu" il guadagno.
 ```
-### Visualizzazione RGB
+#### Visualizzazione RGB a  Colori Naturali(True color)
 ```r
-#Realizzazione di un pannello per accostare le due immagini.
-im.multiframe(1,2)
-plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2015 (True Color)")
-plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo2025 (True Color)")
+# Impostazione finestra per due grafici affiancati
+par(mfrow=c(1, 2))
+
+# Plot delle immagini RGB con i colori reali (True Color)
+plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2015 - True Color")
+plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - True Color")
 
 #Sostituzione del vicino infrarosso NIR (B8) al posto del rosso
 par(mfrow=c(1,1))
@@ -96,7 +97,7 @@ plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False C
 plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
 
 #Visualizzazione suddivisa per le quattro bande per l'anno 2015
-im.multiframe(1,2)
+par(mfrow=c(1,2))
 plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))# banda 
 plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
 plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
