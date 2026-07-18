@@ -94,11 +94,16 @@ plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - T
 
 <img width="750" height="450" alt="Borneo True Color 2015- 2025" src="https://github.com/user-attachments/assets/1c5fc790-3f79-40ef-b1d5-21cedaf55b25" />
 
-#Sostituzione del vicino infrarosso NIR (B8) al posto del rosso
-par(mfrow=c(1,1))
-plotRGB(borneo2015,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
-plotRGB(borneo2025,r="B8",g="B4",b="B3",stretch="lin",main="Borneo,2015, False Color NIR)")
+### Visualizzazione False Color (Infrarosso - NIR)
+```r
+#Manteniamo la finestra divisa in due
+par(mfrow=c(1, 2))
 
+# Plot in False Color usando il NIR per evidenziare la vegetazione
+plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
+plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
+```
+<img width="750" height="450" alt="Borneo False Color NIR 2015- 2025" src="https://github.com/user-attachments/assets/254719f6-dc8a-4744-b2d8-6f32f7b80b71" />
 
 #Visualizzazione suddivisa per le quattro bande per l'anno 2015
 par(mfrow=c(1,2))
