@@ -5,7 +5,10 @@
 #### Matricola n.0001143886
 
 
-# Analisi comparativa multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis guineensis (2015-2025)🌴
+# Analisi comparativa multitemporale dello stress fisiologico ed idrico nelle foreste di Kalimantan e di Riau, in risposta a coltivazioni di palma da olio, Elaeis   guineensis (2015-2025)
+
+<img width="1024" height="766" alt="borneo-1024x766" src="https://github.com/user-attachments/assets/54921c9b-158a-4bed-be15-976ae97c7efc" />
+
 
 ---
 # 1. Introduzione📌
@@ -152,12 +155,7 @@ dvi_diff<-dvi2025-dvi2015
 par(mfrow=c(1,1))
 
 ```
-## Grafico della differenza
-#il rosso indica dove il vigore vegetativo è signfcativamente calato,
-#il bianco le aree stabili, mentre il blu il leggero aumento di ricrescita stagionale
-```r
-plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
-```
+## Analisi NDVI
 ## Calcolo NDVI 2015 e 2025 tramite i numeri delle bande 8=NIR , 4=Rosso
 ndvi2015<-(borneo2015[["B8"]]-borneo2015[["B4"]])/(borneo2015[["B8"]]+borneo2015[["B4"]])
 ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025[["B4"]])
@@ -166,6 +164,11 @@ ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025
 ```r
 ndvi_difference<-ndvi2025-ndvi2015
 ```
+## Grafico della differenza
+```r
+plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
+```#il rosso indica dove il vigore vegetativo è signfcativamente calato,
+#il bianco le aree stabili, mentre il blu il leggero aumento di ricrescita stagiona
 ## Impostazione di un solo schermo per i due NDVI accostati
 ```r
 par(mfrow=c(1,2))
