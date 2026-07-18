@@ -145,7 +145,7 @@ dvi2025<-borneo2025[["B8"]]-borneo2025[["B4"]]
 
 ## Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
 ```r
-dvi_diff<-dvi2015-dvi2025
+dvi_diff<-dvi2025-dvi2015
 ```
 ## Impostazione un unico schermo
 ```r
