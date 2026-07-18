@@ -121,13 +121,13 @@ plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
 
 # Visualizzazione separata delle quattro bande per il 2025
 ```r
-# 1. Pulisce eventuali impostazioni di default
+# Pulisce eventuali impostazioni di default
 par(mfrow=c(1, 1))
 
-# 2. Forza la creazione del pannello 2x2 (due sopra, due sotto)
+# Creazione del pannello 2x2 (due sopra, due sotto)
 par(mfrow=c(2, 2)) 
 
-# 3.Plot delle immagini per ogni banda
+# Plot delle immagini per ogni banda
 plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
 plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
@@ -136,15 +136,13 @@ plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
 <img width="1125" height="600" alt="Plot delle bande 2025 Borneo" src="https://github.com/user-attachments/assets/4ffe98c5-b18b-45e8-a799-54aaf01b601d" />
 
 
-
-
-
-## 6.Analisi DVI (Difference Vegetation INDEX)
+## Analisi DVI (Difference Vegetation INDEX)
 ```r
 ### Calcolo DVI per il 2015 e il 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015[["B4"]]
 dvi2025<-borneo2025[["B8"]]-borneo2025[["B4"]]
 ```
+
 ## Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
 ```r
 dvi_diff<-dvi2015-dvi2025
@@ -152,6 +150,7 @@ dvi_diff<-dvi2015-dvi2025
 ## Impostazione un unico schermo
 ```r
 par(mfrow=c(1,1))
+
 ```
 ## Grafico della differenza
 #il rosso indica dove il vigore vegetativo è signfcativamente calato,
@@ -165,7 +164,7 @@ ndvi2025<-(borneo2025[["B8"]]-borneo2025[["B4"]])/(borneo2025[["B8"]]+borneo2025
 
 ## Calcolo della differenza NDVI
 ```r
-ndvi_difference<-ndvi2015-ndvi2025
+ndvi_difference<-ndvi2025-ndvi2015
 ```
 ## Impostazione di un solo schermo per i due NDVI accostati
 ```r
