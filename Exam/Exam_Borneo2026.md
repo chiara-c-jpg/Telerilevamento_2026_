@@ -106,11 +106,18 @@ plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - F
 <img width="750" height="450" alt="Borneo False Color NIR 2015- 2025" src="https://github.com/user-attachments/assets/254719f6-dc8a-4744-b2d8-6f32f7b80b71" />
 
 ## Visualizzazione suddivisa per le quattro bande per l'anno 2015
-par(mfrow=c(1,2))
-plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))# banda 
-plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
-plot(Borneo2015[["B2"]], main="B4 - Blu 2015", col= magma(100))
-plot(Borneo2015[["B1"]], main="B4 - NIR 2015", col= magma(100))
+
+#1. Pulisce le impostazioni di default
+par(mfrow=c(1, 1))
+
+#2. Creazione del pannello 2x2 
+par(mfrow=c(2, 2)) 
+#3. Disegna le immagini del 2015
+
+plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
+plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
+plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
+plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
 
 # Visualizzazione separata delle quattro bande per il 2025
 ```r
