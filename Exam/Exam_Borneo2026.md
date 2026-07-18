@@ -83,7 +83,7 @@ borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.
 # Definizione palette imageRy 
 cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione e "blu" il guadagno.
 ```
-#### Visualizzazione RGB a  Colori Naturali(True color)
+## Visualizzazione RGB a  Colori Naturali(True color)
 ```r
 # Impostazione finestra per due grafici affiancati
 par(mfrow=c(1, 2))
@@ -94,7 +94,7 @@ plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - T
 ```
 <img width="750" height="450" alt="Borneo True Color 2015- 2025" src="https://github.com/user-attachments/assets/1c5fc790-3f79-40ef-b1d5-21cedaf55b25" />
 
-### Visualizzazione False Color (Infrarosso - NIR)
+## Visualizzazione False Color (Infrarosso - NIR)
 ```r
 #Manteniamo la finestra divisa in due
 par(mfrow=c(1, 2))
@@ -105,7 +105,7 @@ plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - F
 ```
 <img width="750" height="450" alt="Borneo False Color NIR 2015- 2025" src="https://github.com/user-attachments/assets/254719f6-dc8a-4744-b2d8-6f32f7b80b71" />
 
-#Visualizzazione suddivisa per le quattro bande per l'anno 2015
+## Visualizzazione suddivisa per le quattro bande per l'anno 2015
 par(mfrow=c(1,2))
 plot(Borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))# banda 
 plot(Borneo2015[["B3"]], main="B4 - Verde 2015", col= magma(100))
