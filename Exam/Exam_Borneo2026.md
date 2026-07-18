@@ -138,17 +138,22 @@ plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
 ```
 <img width="1125" height="600" alt="Plot delle bande 2025 Borneo" src="https://github.com/user-attachments/assets/4ffe98c5-b18b-45e8-a799-54aaf01b601d" />
 
-
-## Analisi DVI (Difference Vegetation INDEX)
+## Analisi DVI (Difference Vegetation Index)
 ```r
-### Calcolo DVI per il 2015 e il 2025
+#Calcolo DVI per il 2015 e il 2025
 dvi2015<-borneo2015[["B8"]]-borneo2015[["B4"]]
 dvi2025<-borneo2025[["B8"]]-borneo2025[["B4"]]
-```
 
-## Calcolo la diffrenza DVI per quantificare la peridita di vegetazione 
-```r
-dvi_diff<-dvi2025-dvi2015
+#Calcolo la differenza DVI per quantificare la perdita di vegetazione 
+dvi_diff<-dvi2015-dvi2025
+
+#Impostazione un unico schermo
+par(mfrow=c(1,1))
+
+#Grafico della differenza
+#il rosso indica dove il vigore vegetativo è significativamente calato,
+#il bianco le aree stabili, mentre il blu il leggero aumento di ricrescita stagionale
+plot(dvi_diff,col=cl_diff,main="Differenza DVI(2015-2025)")
 ```
 ## Impostazione un unico schermo
 ```r
