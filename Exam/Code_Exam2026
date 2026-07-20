@@ -1,0 +1,216 @@
+# 1. impostazione directoru di lavoro
+setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
+
+list.files()
+# Apertura pacchetti precedentemente installati
+library(terra)      # Gestione raster ed operazioni spaziali
+library(imageRy)    # Analisi immagini satellitari
+library(viridis)    # Palette colori
+library(ggplot2)    # Creazione grafici
+library(patchwork)  # Composizione grafici
+
+# Palette colori per le differenze
+cl_diff <- colorRampPalette(c("red", "white", "blue"))(100)
+
+
+# ==========================================
+# 2. ANALISI COMPLETA AREA BORNEO (2015 - 2025)
+# ==========================================
+borneo2015 <- rast("Borneo2015.tif")
+borneo2025 <- rast("Borneo2025.tif")
+
+# A. Visualizzazione RGB a Colori Naturali (True color)
+par(mfrow=c(1, 2))
+plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2015 - True Color")
+plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - True Color")
+
+# B. Visualizzazione False Color (NIR)
+par(mfrow=c(1, 2))
+plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
+plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
+
+# C. Visualizzazione singole bande (2015 e 2025)
+par(mfrow=c(2, 2))
+plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
+plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
+plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
+plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
+
+par(mfrow=c(2, 2))
+plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
+plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
+plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
+plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
+
+# D. Calcolo DVI, NDVI e NDMI per il Borneo
+dvi2015 <- borneo2015[["B8"]] - borneo2015[["B4"]]
+dvi2025 <- borneo2025[["B8"]] - borneo2025[["B4"]]
+
+par(mfrow=c(1, 2))
+plot(dvi2015, main="DVI Borneo (2015)")
+plot(dvi2025, main="DVI Borneo (2025)")
+
+dvi_diff <- dvi2025 - dvi2015
+par(mfrow=c(1, 1))
+plot(dvi_diff, col = cl_diff, main = "Differenza DVI (2025 - 2015)")
+
+# NDVI Borneo
+ndvi2015 <- (borneo2015[["B8"]] - borneo2015[["B4"]]) / (borneo2015[["B8"]] + borneo2015[["B4"]])
+ndvi2025 <- (borneo2025[["B8"]] - borneo2025[["B4"]]) / (borneo2025[["B8"]] + borneo2025[["B4"]])
+
+par(mfrow=c(1, 2))
+plot(ndvi2015, col=viridis(100), main="NDVI 2015")
+plot(ndvi2025, col=viridis(100), main="NDVI 2025")
+
+ndvi_diff <- ndvi2025 - ndvi2015
+par(mfrow=c(1, 1))
+plot(ndvi_diff, col = cl_diff, main = "Differenza NDVI (2025 - 2015)")
+
+# NDMI Borneo
+ndmi2015 <- (borneo2015[["B8"]] - borneo2015[["B11"]]) / (borneo2015[["B8"]] + borneo2015[["B11"]])
+ndmi2025 <- (borneo2025[["B8"]] - borneo2025[["B11"]]) / (borneo2025[["B8"]] + borneo2025[["B11"]])
+
+par(mfrow=c(1, 2))
+plot(ndmi2015, col=viridis(100), main="NDMI 2015")
+plot(ndmi2025, col=viridis(100), main="NDMI 2025")
+
+ndmi_diff <- ndmi2025 - ndmi2015
+par(mfrow=c(1, 1))
+plot(ndmi_diff, col=cl_diff, main="Differenza NDMI (2025 - 2015)")
+
+# E. Classificazione del Borneo tramite matrice
+matrice_class <- matrix(c(
+  -Inf, 0.4, 1, # Suolo nudo / Deforestazione
+   0.4, 0.7, 2, # Piantagioni
+   0.7, Inf, 3  # Foresta primaria intatta
+), ncol = 3, byrow = TRUE)
+
+ndvi2015_class <- classify(ndvi2015, matrice_class)
+ndvi2025_class <- classify(ndvi2025, matrice_class)
+
+# Plot classificazione Borneo con legenda laterale
+colori_classi <- c("red", "yellow", "darkgreen")
+layout(matrix(c(1, 2, 3), nrow=1), widths=c(1, 1, 0.3))
+par(mar=c(2.5, 2.5, 3, 1))
+plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015", legend=FALSE)
+plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025", legend=FALSE)
+par(mar=c(0, 0, 0, 0))
+plot.new()
+legend("center", legend=c("1", "2", "3"), fill=colori_classi, xpd=TRUE, bty="n", cex=1.5)
+
+# F. Analisi statistica e grafico a barre separato per il Borneo
+freq_2015 <- freq(ndvi2015_class)
+freq_2025 <- freq(ndvi2025_class)
+perc_2015 <- freq_2015$count * 100 / ncell(ndvi2015_class)
+perc_2025 <- freq_2025$count * 100 / ncell(ndvi2025_class)
+
+tabella_classi_borneo <- data.frame(
+  Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
+  "Anno 2015" = round(perc_2015, 2),
+  "Anno 2025" = round(perc_2025, 2),
+  check.names = FALSE
+)
+
+tabella_classi_borneo$Classe <- factor(tabella_classi_borneo$Classe, levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
+colori_fissi <- c("Suolo Nudo" = "red", "Piantagioni" = "yellow", "Foresta Primaria" = "darkgreen")
+
+p1 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2015`, fill=Classe)) + 
+  geom_bar(stat="identity") + scale_fill_manual(values=colori_fissi) + ylim(0, 100) +
+  ggtitle("Copertura suolo Kalimantan - 2015") + theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="none")
+
+p2 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2025`, fill=Classe)) + 
+  geom_bar(stat="identity") + scale_fill_manual(values=colori_fissi) + ylim(0, 100) +
+  ggtitle("Copertura suolo Kalimantan - 2025") + theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="none")
+
+print(p1 + p2)
+
+
+# ==========================================
+# 3. ANALISI AREA SUMATRA (2016 - 2025)
+# ==========================================
+sumatra2016_raw <- rast("sumatra2016.tif")
+sumatra2025_raw <- rast("sumatra2025.tif")
+
+ndvi_2016 <- (sumatra2016_raw[[4]] - sumatra2016_raw[[3]]) / (sumatra2016_raw[[4]] + sumatra2016_raw[[3]])
+ndvi_2025 <- (sumatra2025_raw[[4]] - sumatra2025_raw[[3]]) / (sumatra2025_raw[[4]] + sumatra2025_raw[[3]])
+
+par(mfrow=c(1, 2))
+plot(ndvi_2016, main="NDVI Sumatra (2016)")
+plot(ndvi_2025, main="NDVI Sumatra (2025)")
+
+ndmi_2016 <- (sumatra2016_raw[[4]] - sumatra2016_raw[[5]]) / (sumatra2016_raw[[4]] + sumatra2016_raw[[5]])
+ndmi_2025 <- (sumatra2025_raw[[4]] - sumatra2025_raw[[5]]) / (sumatra2025_raw[[4]] + sumatra2025_raw[[5]])
+
+par(mfrow=c(1, 2))
+plot(ndmi_2016, main="NDMI Sumatra (2016)")
+plot(ndmi_2025, main="NDMI Sumatra (2025)")
+
+diff_ndvi <- ndvi_2025 - ndvi_2016
+diff_ndmi <- ndmi_2025 - ndmi_2016
+par(mfrow=c(1, 2))
+plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")
+plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")
+
+sumatra2016_class <- classify(ndvi_2016, matrice_class)
+sumatra2025_class <- classify(ndvi_2025, matrice_class)
+
+freq_sum2016 <- freq(sumatra2016_class)
+freq_sum2025 <- freq(sumatra2025_class)
+perc_sum2016 <- freq_sum2016$count * 100 / ncell(sumatra2016_class)
+perc_sum2025 <- freq_sum2025$count * 100 / ncell(sumatra2025_class)
+
+
+# ==========================================
+# 4. CREAZIONE DATAFRAME FINALE UNIFICATO
+# ==========================================
+tabella_totale <- data.frame(
+  Regione = rep(c("Borneo", "Borneo", "Sumatra", "Sumatra"), each = 3),
+  Anno = rep(c("2016", "2025", "2016", "2025"), each = 3),
+  Classe = rep(c("Suolo Nudo", "Piantagioni", "Foresta Primaria"), 4),
+  Percentuale = c(
+    round(perc_2015, 2), round(perc_2025, 2), 
+    round(perc_sum2016, 2), round(perc_sum2025, 2)
+  )
+)
+
+tabella_totale$Classe <- factor(tabella_totale$Classe, 
+                                levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
+
+tabella_totale$Gruppo <- paste(tabella_totale$Regione, tabella_totale$Anno)
+tabella_totale$Gruppo <- factor(tabella_totale$Gruppo, 
+                                levels = c("Borneo 2016", "Sumatra 2016", "Borneo 2025", "Sumatra 2025"))
+
+
+# ==========================================
+# 5. GENERAZIONE GRAFICO COMPARATIVO FINALE
+# ==========================================
+ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Gruppo)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.85), width = 0.75) +
+  scale_fill_manual(values = c(
+    "Borneo 2016" = "#87CEFA",
+    "Sumatra 2016" = "#DDA0DD",
+    "Borneo 2025" = "#0000CD",
+    "Sumatra 2025" = "#800080"
+  )) +
+  ylim(0, 100) +
+  labs(title = "Confronto Borneo Sumatra", 
+       y = "Percentuale (%)", 
+       x = "Anno", 
+       fill = "Isola e Anno") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(size = 11, face = "bold", color = "black"),
+    axis.text.y = element_text(size = 10),
+    axis.title.y = element_text(size = 12, face = "bold"),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 13),
+    strip.text = element_text(size = 12, face = "bold", color = "black"),
+    strip.background = element_rect(fill = "gray90", color = "black", linewidth = 0.5),
+    legend.title = element_text(size = 11, face = "bold"),
+    legend.text = element_text(size = 10),
+    panel.spacing = unit(1, "lines")
+  ) +
+  facet_wrap(~ Classe, labeller = as_labeller(c(
+    "Suolo Nudo" = "Suolo Nudo",
+    "Piantagioni" = "Piantagioni",
+    "Foresta Primaria" = "Foresta"
+  )))
