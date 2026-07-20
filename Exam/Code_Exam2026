@@ -1,42 +1,55 @@
-# 1. impostazione directoru di lavoro
+## Impostazione della directory di lavoro
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
+#Controllare che le immagini siano salvate nella directory di lavoro 
 list.files()
-# Apertura pacchetti precedentemente installati
-library(terra)      # Gestione raster ed operazioni spaziali
+
+# Apertura dei pacchetti installati
+library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
 library(imageRy)    # Analisi immagini satellitari
-library(viridis)    # Palette colori
+library(viridis)    # Palette colori per gli indici
 library(ggplot2)    # Creazione grafici
-library(patchwork)  # Composizione grafici
+library(patchwork)  # Composizione ed affiancamento dei grafici
 
-# Palette colori per le differenze
-cl_diff <- colorRampPalette(c("red", "white", "blue"))(100)
+# Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
+borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
+borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif")
 
+# Definizione della palette personalizzata
+cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione e "blu" il guadagno.
 
-# ==========================================
-# 2. ANALISI COMPLETA AREA BORNEO (2015 - 2025)
-# ==========================================
-borneo2015 <- rast("Borneo2015.tif")
-borneo2025 <- rast("Borneo2025.tif")
+# 2. ANALISI AREA BORNEO (2015 - 2025)
 
-# A. Visualizzazione RGB a Colori Naturali (True color)
+# Impostazione finestra per due grafici affiancati
 par(mfrow=c(1, 2))
+
+# Plot delle immagini RGB con i colori reali (True Color)
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2015 - True Color")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - True Color")
 
-# B. Visualizzazione False Color (NIR)
+#Manteniamo la finestra divisa in due
 par(mfrow=c(1, 2))
+
+# Plot in False Color usando il NIR per evidenziare la vegetazione
 plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
 plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
 
-# C. Visualizzazione singole bande (2015 e 2025)
+# Impostazione di un pannelo 2*2
 par(mfrow=c(2, 2))
+
+# Visualizzazione False Color (NIR) 2015 
+
+# Creazione del pannello 2x2 
+par(mfrow=c(2, 2)) 
+
+# Visualizzazione immagini del 2015 con la palette  "magma"
 plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
 plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
 plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
 plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
-
 par(mfrow=c(2, 2))
+
+# Visualizzazione immagini del 2015 con la palette  "magma" 
 plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
 plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
