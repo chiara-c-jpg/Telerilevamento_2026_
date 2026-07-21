@@ -1,10 +1,10 @@
-## Impostazione della directory di lavoro
+# Impostazione della directory di lavoro
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-#Controllare che le immagini siano salvate nella directory di lavoro 
+# Controllare che I raster, precedentemnte scaricati, siano salvati nella directory di lavoro 
 list.files()
 
-# Apertura dei pacchetti installati
+# Apertura dei pacchetti precedentemnte installati
 library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
 library(imageRy)    # Analisi immagini satellitari
 library(viridis)    # Palette colori per gli indici
@@ -16,7 +16,7 @@ borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif")
 
 # Definizione della palette personalizzata
-cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione e "blu" il guadagno.
+cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione,"blu" l'aumento mentra "white" la vegetazione stabile.
 
 # 2. ANALISI AREA BORNEO (2015 - 2025)
 
@@ -30,7 +30,7 @@ plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - T
 #Manteniamo la finestra divisa in due
 par(mfrow=c(1, 2))
 
-# Plot in False Color usando il NIR per evidenziare la vegetazione
+# Plot in False Color tramite il vicino infrarosso (NIR) per evidenziare la vegetazione
 plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
 plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
 
@@ -42,7 +42,7 @@ par(mfrow=c(2, 2))
 # Creazione del pannello 2x2 
 par(mfrow=c(2, 2)) 
 
-# Visualizzazione immagini Borneo del 2015 con la palette  "magma"
+# Visualizzazione immagini per ogni banda Borneo del 2015 con la palette  "magma"
 plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
 plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
 plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
@@ -52,7 +52,7 @@ par(mfrow=c(2, 2))
 # Creazione del pannello 2x2 
 par(mfrow=c(2, 2)) 
 
-# Plot Borneo 2025 delle immagini per ogni banda
+# Visualizzazione immagini per ogni banda Borneo del 2015 con la palette  "magma"
 plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
 plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
@@ -62,36 +62,36 @@ plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
 
 # Analisi DVI (Difference Vegetation Index)
 
-# Calcolo DVI
+# Calcolo DVI (applicando la formula)
 dvi2015 <- borneo2015[["B8"]] - borneo2015[["B4"]]
 dvi2025 <- borneo2025[["B8"]] - borneo2025[["B4"]]
 
 # Imposta il layout affiancato: 1 riga, 2 colonne
 par(mfrow=c(1, 2))
 
-# Genera i due grafici
+# Genera i due plot DVI 2015 e 2025 per il raster del Borneo 
 plot(dvi2015, main="DVI Borneo (2015)")
 plot(dvi2025, main="DVI Borneo (2025)")
 
-# Calcolo della differenza DVI 2015-2025
+# Calcolo della differenza DVI 2015-2025 per il raster del Borneo 
 dvi_diff <- dvi2025 - dvi2015
 
-# Impostazione del layout 
+# Impostazione del layout singolo 
 par(mfrow=c(1,1))
 
 # Plot Differenza DVI 
 plot(dvi_diff, col = cl_diff, main = "Differenza DVI (2025 - 2015)")
 
-# Analisi NDVI  (Normalized Difference Vegetation Index) per il Borneo (2015 - 2025)
+# Analisi NDVI  (Normalized Difference Vegetation Index) del Borneo (2015 - 2025)
 
 # Calcolo NDVI 2015 e 2025 tramite le bande 8=NIR, 4=Rosso
 ndvi2015 <- (borneo2015[["B8"]] - borneo2015[["B4"]]) / (borneo2015[["B8"]] + borneo2015[["B4"]])
 ndvi2025 <- (borneo2025[["B8"]] - borneo2025[["B4"]]) / (borneo2025[["B8"]] + borneo2025[["B4"]])
 
-# Impostazione del layout
+# Impostazione del layout a una colonna e due righe ed una colonna per generare due grafici affiancati
 par(mfrow=c(1,2))
 
-# Generazione dei grafici NDVI 2015 2025 affiancati tramite palette "viridis"
+# Generazione dei grafici NDVI 2015 2025 affiancati tramite palette "viridis" per gli anni 2015 e 2025
 plot(ndvi2015, col=viridis(100), main="NDVI 2015")
 plot(ndvi2025, col=viridis(100), main="NDVI 2025")
 
@@ -104,11 +104,11 @@ par(mfrow=c(1,1))
 # Plot Differenza NDVI
 plot(ndvi_diff, col = cl_diff, main = "Differenza NDVI (2025 - 2015)")
 
-### Analisi NDMI (Normalized Difference Mustoire Index)
+# Analisi NDMI (Normalized Difference Moisture Index) 
 
-## Calcolo NDMI 2015 2025
+# Analisi NDMI 2015 2025
 
-# Calcolo NDMI tramite le bande 8=NIR e 11=SWIR
+# Calcolo NDMI tramite le bande NIR(vicino infrarosso) e SWIR(Short-Wavelength Infrared) (NIR=8 e SWIR=11) 
 ndmi2015 <- (borneo2015[["B8"]] - borneo2015[["B11"]]) / (borneo2015[["B8"]] + borneo2015[["B11"]])
 ndmi2025 <- (borneo2025[["B8"]] - borneo2025[["B11"]]) / (borneo2025[["B8"]] + borneo2025[["B11"]])
 
@@ -126,23 +126,23 @@ plot(ndmi2025, col=viridis(100), main="NDMI 2025")
 # Calcolo della differenza NDMI
 ndmi_diff <- ndmi2025 - ndmi2015
 
-# reset pannel grafico
+# reset pannello grafico
 par(mfrow=c(1,1))
 
-# Plot della diffrenza NDMI 
-plot(ndmi_diff, col=cl_diff, main="Differenza NDMI (2025 - 2015))
+# Plot della diffrenza NDMI tramite palette personalizzata 
+plot(ndmi_diff, col=cl_diff, main="Differenza NDMI (2025 - 2015)")
 
-# Definizione dei colori per le 3 classi
+# Definizione dei colori per 3 classi (rosso, giallo, verde scuro)
 colori_classi <- c("red", "yellow", "darkgreen")
 
-# Matrice di classificazione basata sull'NDVI
+# Matrice di classificazione basata sull'NDVI per distinguere le tre classi di copertura del suolo
 matrice_class <- matrix(c(
   -Inf, 0.4, 1, # Classe 1: Suolo nudo/Deforestazione
    0.4, 0.7, 2, # Classe 2: Piantagioni
    0.7, Inf, 3  # Classe 3: Foresta primaria intatta
 ), ncol = 3, byrow = TRUE)
 
-# Classificazione tramite la funzione classify()
+# Classificazione NDVI tramite la funzione classify()
 ndvi2015_class <- classify(ndvi2015, matrice_class)
 ndvi2025_class <- classify(ndvi2025, matrice_class)
 
@@ -157,29 +157,29 @@ plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015", legend=FALS
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025", legend=FALSE)
 
 # Azzera i margini per il pannello della legenda e inseriscila
-par(mar=c(0, 0, 0, 0)) 
-plot.new()
+par(mar=c(0, 0, 0, 0)) # Azzera i margini del pannello 
+plot.new()  #crea un nuovo pannello ografico
 legend("center", 
        legend=c("1", "2", "3"), 
        fill=colori_classi, 
        xpd=TRUE,       
        bty="n",        
-       cex=1.5)
+       cex=1.5)  # crea una legenda con le tre classi suddivise per colori con precise dimensioni 
 
 # Analisi statistica e multitemporale
 Per quantificare le variazioninell'uso del suolo tra il 2015 e il 2025, estraiamo le frequenze dei pixel per ciascuna classe e calcoliamo le rispettive percentuali sull'area totale.
 
-# Calcolo frequenze
+# Calcolo frequenze tramite NDVI del Borneo per il 2015 e 2025
 freq_2015 <- freq(ndvi2015_class)
 freq_2025 <- freq(ndvi2025_class)
 
-# Calcolo delle  percentuali
+# Calcolo delle percentuali, a partire dalle frequenze, per entrambi gli anni
 perc_2015 <- freq_2015$count * 100 / ncell(ndvi2015_class)
 perc_2025 <- freq_2025$count * 100 / ncell(ndvi2025_class)
 
 # Realizzazione di un Grafico a barre
 
-# Creazione della tabella di classificazione per il Borneo (Kalimantan)
+# Creazione della tabella di classificazione del Borneo (Kalimantan)
 tabella_classi_borneo <- data.frame(
   Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
   "Anno 2015" = round(perc_2015, 2),
@@ -187,15 +187,16 @@ tabella_classi_borneo <- data.frame(
   check.names = FALSE
 )
 
-print(tabella_classi_borneo)
+print(tabella_classi_borneo) # stampa la tabella di classificazione del Borneo
 
-# Ordinamento dei fattori e definizione palette
+# Ordinamento dei fattori, intestazioni 
 tabella_classi_borneo$Classe <- factor(tabella_classi_borneo$Classe, 
                                        levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
 
+# definizione palette di colori standard per ciascuna classe
 colori_fissi <- c("Suolo Nudo" = "red", "Piantagioni" = "yellow", "Foresta Primaria" = "darkgreen")
 
-# Grafico classi Borneo 2015
+# Grafico classificazione Borneo 2015
 p1 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2015`, fill=Classe)) + 
   geom_bar(stat="identity") + 
   scale_fill_manual(values=colori_fissi) + 
@@ -203,7 +204,7 @@ p1 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2015`, fill=Classe)) +
   ggtitle("Copertura suolo Kalimantan - 2015") + 
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="none")
 
-# Grafico classi Borneo 2025
+# Grafico classificazione Borneo 2025
 p2 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2025`, fill=Classe)) + 
   geom_bar(stat="identity") + 
   scale_fill_manual(values=colori_fissi) + 
@@ -211,11 +212,11 @@ p2 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2025`, fill=Classe)) +
   ggtitle("Copertura suolo Kalimantan - 2025") + 
   theme(axis.text.x=element_text(angle=45, hjust=1), legend.position="none")
 
-# Unione e stampa del grafico finale tramite patchwork
+# Unione e stampa del grafico finale tramite pacchetto "patchwork"
 grafico_finale <- p1 + p2 
 print(grafico_finale)
 
-# Analisi Multitemporale e Comparativa della Copertura del Suolo tra ROI del Borneo e di Sumatra (2015-2025)
+# Analisi Multitemporale e Comparativa della Copertura del Suolo tra Roi del Borneo e di Sumatra (2015-2025)
 Preparazione e Classificazione dei Dati per Sumatra
 
 
@@ -223,7 +224,7 @@ Preparazione e Classificazione dei Dati per Sumatra
 sumatra2016_raw <- rast("sumatra2016.tif")
 sumatra2025_raw <- rast("sumatra2025.tif")
 
-# Calcola l'NDVI per entrambi gli anni (Banda 3 = Red, Banda 4 = NIR)
+# Calcola l'NDVI per entrambi per gli anni 2016 e 2025 (Banda 3 = Red, Banda 4 = NIR)
 ndvi_2016 <- (sumatra2016_raw[[4]] - sumatra2016_raw[[3]]) / (sumatra2016_raw[[4]] + sumatra2016_raw[[3]])
 ndvi_2025 <- (sumatra2025_raw[[4]] - sumatra2025_raw[[3]]) / (sumatra2025_raw[[4]] + sumatra2025_raw[[3]])
 
@@ -236,7 +237,7 @@ plot(ndvi_2025, main="NDVI Sumatra (2025)")
 ndmi_2016 <- (sumatra2016_raw[[4]] - sumatra2016_raw[[5]]) / (sumatra2016_raw[[4]] + sumatra2016_raw[[5]])
 ndmi_2025 <- (sumatra2025_raw[[4]] - sumatra2025_raw[[5]]) / (sumatra2025_raw[[4]] + sumatra2025_raw[[5]])
 
-#  Plot dei due NDMI affiancati per Sumatra (2016-2025)
+#  Plot dei due NDMI affiancati di Sumatra (2016-2025)
 par(mfrow=c(1, 2))
 plot(ndmi_2016, main="NDMI Sumatra (2016)")
 plot(ndmi_2025, main="NDMI Sumatra (2025)")
@@ -245,24 +246,24 @@ plot(ndmi_2025, main="NDMI Sumatra (2025)")
 diff_ndvi <- ndvi_2025 - ndvi_2016
 diff_ndmi <- ndmi_2025 - ndmi_2016
 
-# Plot delle due mappe di differenza (NDVI e NDMI) con la palette "magna"
-par(mfrow=c(1, 2))
-plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")
-plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")
+# Plot delle due mappe di differenza (NDVI e NDMI) tramite la palette "magna"
+par(mfrow=c(1, 2)) #impostazioen di un pannello con due plot affiancati
+plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")  #Plot NDVI della differenza con titolo "Differenza NDVI (2025 - 2016)"
+plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")   #Plot NDMI della differenza con titolo "Differenza NDVI (2025 - 2016)"
 
-# 7. Classificazione basata sulla tua matrice (soglie NDVI)
+# 7. Classificazione basata sulla matrice (soglie NDVI)
 # matrice_class <- matrix(c(min, max, classe, ...), ncol=3, byrow=TRUE)
-sumatra2016_class <- classify(ndvi_2016, matrice_class)
-sumatra2025_class <- classify(ndvi_2025, matrice_class)
+sumatra2016_class <- classify(ndvi_2016, matrice_class) # classificazione NDVI Sumatra 2016
+sumatra2025_class <- classify(ndvi_2025, matrice_class) # classificazione NDVI Sumatra 2025
 
 # Calcolo frequenze e percentuali reali dai pixel
-freq_sum2016 <- freq(sumatra2016_class)
-freq_sum2025 <- freq(sumatra2025_class)
+freq_sum2016 <- freq(sumatra2016_class) # Frequenza NDVI Sumatra 2016 
+freq_sum2025 <- freq(sumatra2025_class) # Frequenza NDVI Sumatra 2025 
 
-perc_sum2016 <- freq_sum2016$count * 100 / ncell(sumatra2016_class)
-perc_sum2025 <- freq_sum2025$count * 100 / ncell(sumatra2025_class)
+perc_sum2016 <- freq_sum2016$count * 100 / ncell(sumatra2016_class) # percentuale Sumatra 2016 
+perc_sum2025 <- freq_sum2025$count * 100 / ncell(sumatra2025_class) # percentuale Sumatra 2025 
 
-# Creazione Dataframe pulito (senza Riau)
+# Creazione Dataframe con le classi di copertura del suolo
 tabella_classi_sumatra <- data.frame(
   Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
   Anno_2016 = round(perc_sum2016, 2),
@@ -271,8 +272,9 @@ tabella_classi_sumatra <- data.frame(
 tabella_classi_sumatra$Regione <- "Sumatra"
 
 # Visualizza la tabella 
-print(tabella_classi_sumatra)
-### Grafico a barre delle percentuali di Sumatra 
+print(tabella_classi_sumatra
+
+# Grafico a barre delle percentuali di Sumatra 
 library(ggplot2)
 library(patchwork)
 
@@ -291,7 +293,7 @@ tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe,
 
 colori_scuri <- c("Suolo Nudo" = "firebrick3", "Piantagioni" = "goldenrod3", "Foresta Primaria" = "forestgreen")
 
-# 3. Grafico Copertura Sumatra per l'anno 2016
+# Grafico Copertura Sumatra per l'anno 2016
 p1 <- ggplot(tabella_classi_sumatra, aes(x = Classe, y = Anno_2016, fill = Classe)) + 
   geom_bar(stat = "identity") + 
   scale_fill_manual(values = colori_scuri) + 
@@ -314,15 +316,13 @@ grafico_finale <- p1 + p2
 print(grafico_finale)
 library(ggplot2)
 
-# Utilizziamo la tabella_totale già creata in precedenza, assicurandoci 
-# che Classe, Anno e Regione siano impostati correttamente.
-
+# Utilizziamo la tabella_totale già creata in precedenza, impostando correttamente classe, anno e Regione siano impostati correttamente.
 ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Classe)) +
   
-  # Barre raggruppate per classe all'interno di ciascun anno
-  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+# Barre raggruppate per classe all'interno di ciascun anno
+geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
   
-  # I tuoi colori originali per le classi di copertura
+# I tuoi colori originali per le classi di copertura
   scale_fill_manual(values = c(
     "Suolo Nudo" = "firebrick3", 
     "Piantagioni" = "goldenrod3", 
@@ -343,9 +343,9 @@ ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Classe)) +
         
   # Dividiamo il grafico in due scompartimenti: uno per il Borneo, uno per Sumatra
   facet_wrap(~ Regione)
-### Grafico comparativo finale (Borneo vs Sumatra)
 
-Per visualizzare e confrontare direttamente le dinamiche territoriali tra le due isole, realizziamo un grafico a barre raggruppate per anno, suddividendo le classi di copertura tramite `ggplot2` e `facet_wrap`:
+# Grafico comparativo finale (Borneo vs Sumatra)
+# Per confrontare le dinamiche territoriali tra le due isole, si ottiene un grafico a barre raggruppate per anno, suddividendo le classi di copertura tramite "ggplot2" e "facet_wrap":
 
 ```r
 # Apertura pacchetto ggplot2
