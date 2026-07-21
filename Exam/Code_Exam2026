@@ -10,7 +10,6 @@ list.files()
 
 # Apertura dei pacchetti precedentemnte installati
 library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
-library(imageRy)    # Analisi immagini satellitari
 library(viridis)    # Palette colori per gli indici
 library(ggplot2)    # Creazione grafici
 library(patchwork)  # Composizione ed affiancamento dei grafici
@@ -19,7 +18,7 @@ library(patchwork)  # Composizione ed affiancamento dei grafici
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif")
 
-# Palette basate su "magma" per identificare le differenze
+# Palette di differenza basate su "magma" 
 palette_magma_diff <- colorRampPalette(magma(100))(100)
 
 # Definizione di una palette alternativa personalizzata (di colori rosso, bianco e blu)
@@ -49,12 +48,12 @@ par(mfrow=c(2, 2))
 # Creazione del pannello 2x2 
 par(mfrow=c(2, 2)) 
 
-# Visualizzazione immagini per ogni banda Borneo del 2015 con la palette  "magma"
+# Visualizzazione singole bande Borneo del 2015 con la palette  "magma"
 plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
 plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
 plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
 plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
-par(mfrow=c(2, 2))
+
 
 # Creazione del pannello 2x2 
 par(mfrow=c(2, 2)) 
