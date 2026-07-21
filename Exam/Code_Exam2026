@@ -158,13 +158,13 @@ layout(matrix(c(1, 2, 3), nrow=1), widths=c(1, 1, 0.3))
 # Riduzione dei margini definendo valori attorno alle mappe per ingrandirle (sotto, sinistra, sopra, destra)
 par(mar=c(2.5, 2.5, 3, 1)) 
 
-# Plot delle due mappe con i colori assegnati ad aogni classe 
+# Plot delle due mappe con i colori assegnati ad ogni classe per entrambi gli anni 
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015", legend=FALSE)
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025", legend=FALSE)
 
 # Azzera i margini per il pannello della legenda e la posiziona
 par(mar=c(0, 0, 0, 0)) # Azzera i margini del pannello 
-plot.new()  #crea un nuovo pannello ografico
+plot.new()  #crea un nuovo pannello grafico
 legend("center", 
        legend=c("1", "2", "3"), 
        fill=colori_classi, 
@@ -173,7 +173,7 @@ legend("center",
        cex=1.5)  # crea una legenda con le tre classi suddivise per colori con precise dimensioni 
 
 # Analisi statistica e multitemporale
-#Per quantificare le variazioninell'uso del suolo tra il 2015 e il 2025, sono estratte le frequenze dei pixel per ciascuna classe e calcolate le rispettive percentuali sull'area totale.
+#Per quantificare le variazioninell'uso del suolo tra il 2015 e il 2025, vengono estratte le frequenze dei pixel per ciascuna classe e calcolate le rispettive percentuali sull'area totale.
 
 # Calcolo frequenze tramite NDVI del Borneo per il 2015 e per il 2025
 freq_2015 <- freq(ndvi2015_class)
@@ -195,7 +195,7 @@ tabella_classi_borneo <- data.frame(
 
 print(tabella_classi_borneo) # stampa la tabella di classificazione del Borneo
 
-# Ordinamento dei fattori, intestazioni 
+# Ordinamento dei fattori delle intestazioni 
 tabella_classi_borneo$Classe <- factor(tabella_classi_borneo$Classe, 
                                        levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
 
@@ -222,9 +222,8 @@ p2 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2025`, fill=Classe)) +
 grafico_finale <- p1 + p2 
 print(grafico_finale)
 
-# Analisi Multitemporale e Comparativa della Copertura del Suolo tra Roi del Borneo e di Sumatra (2015-2025)
+# Analisi Multitemporale e Comparativa della Copertura del Suolo tra la regione di interesse del Borneo e quella di Sumatra (2015-2025)
 Preparazione e Classificazione dei Dati per Sumatra
-
 
 # Caricamento dei file raster
 sumatra2016_raw <- rast("sumatra2016.tif")
@@ -253,11 +252,11 @@ diff_ndvi <- ndvi_2025 - ndvi_2016
 diff_ndmi <- ndmi_2025 - ndmi_2016
 
 # Plot delle due mappe di differenza (NDVI e NDMI) tramite la palette "magna"
-par(mfrow=c(1, 2)) #impostazioen di un pannello con due plot affiancati
+par(mfrow=c(1, 2)) # impostazione di un pannello con due plot affiancati
 plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")  #Plot NDVI della differenza con titolo "Differenza NDVI (2025 - 2016)"
-plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")   #Plot NDMI della differenza con titolo "Differenza NDVI (2025 - 2016)"
+plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")   #Plot NDMI della differenza con titolo "Differenza NDMI (2025 - 2016)"
 
-# 7. Classificazione basata sulla matrice (soglie NDVI)
+# Classificazione basata sulla matrice (impostando le soglie NDVI)
 # matrice_class <- matrix(c(min, max, classe, ...), ncol=3, byrow=TRUE)
 sumatra2016_class <- classify(ndvi_2016, matrice_class) # classificazione NDVI Sumatra 2016
 sumatra2025_class <- classify(ndvi_2025, matrice_class) # classificazione NDVI Sumatra 2025
