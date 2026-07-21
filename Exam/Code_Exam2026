@@ -45,7 +45,7 @@ plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - F
 # Impostazione di un pannelo 2x2
 par(mfrow=c(2, 2))
 
-# Visualizzazione singole bande Borneo del 2015 con la palette  "magma"
+# Visualizzazione singole bande del raster Borneo del 2015 con la palette "magma"
 plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
 plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
 plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
@@ -54,7 +54,7 @@ plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
 # Creazione del pannello 2x2 
 par(mfrow=c(2, 2)) 
 
-# Visualizzazione per ogni banda dell'immagine del Borneo del 2025 tramite la palette  "magma"
+# Visualizzazione singole bande del raster Borneo del 2025 con la palette "magma"
 plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
 plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
@@ -64,7 +64,7 @@ plot(borneo2025[["B8"]], main="B8 - NIR 2025", col= magma(100))
 
 # Analisi DVI (Difference Vegetation Index)
 
-# Calcolo DVI (applicando la formula)
+# Calcolo DVI (applicando la formula) per il 2015 e per il 2025
 dvi2015 <- borneo2015[["B8"]] - borneo2015[["B4"]]
 dvi2025 <- borneo2025[["B8"]] - borneo2025[["B4"]]
 
