@@ -258,9 +258,7 @@ par(mfrow=c(1, 2)) # impostazione di un pannello con due plot affiancati
 plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")  #Plot NDVI della differenza con titolo "Differenza NDVI (2025 - 2016)"
 plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")   #Plot NDMI della differenza con titolo "Differenza NDMI (2025 - 2016)"
 
-# Classificazione basata sulla matrice (impostando le soglie NDVI)
-
-# matrice_class <- matrix(c(min, max, classe, ...), ncol=3, byrow=TRUE)
+# Classificazione basata sulla matrice matrice_class (impostando le soglie standard di NDVI precedenti)
 sumatra2016_class <- classify(ndvi_2016, matrice_class) # classificazione NDVI Sumatra 2016
 sumatra2025_class <- classify(ndvi_2025, matrice_class) # classificazione NDVI Sumatra 2025
 
@@ -271,7 +269,7 @@ freq_sum2025 <- freq(sumatra2025_class) # Frequenza NDVI Sumatra 2025
 perc_sum2016 <- freq_sum2016$count * 100 / ncell(sumatra2016_class) # percentuale Sumatra 2016 
 perc_sum2025 <- freq_sum2025$count * 100 / ncell(sumatra2025_class) # percentuale Sumatra 2025 
 
-# Creazione Dataframe con le classi di copertura del suolo
+# Creazione dataframe con le classi di copertura del suolo
 tabella_classi_sumatra <- data.frame(
   Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
   Anno_2016 = round(perc_sum2016, 2),
@@ -280,20 +278,11 @@ tabella_classi_sumatra <- data.frame(
 tabella_classi_sumatra$Regione <- "Sumatra" # Aggiungo una colonna per indicare che la mia regione di interesse (ROI) è a Sumatra
 
 # Visualizza la tabella 
-print(tabella_classi_sumatra)
+# Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
+print(tabella_classi_sumatra) 
 
 # Grafico a barre delle percentuali di Sumatra 
 
-# Creazione della tabella di classificazione per Sumatra 
-tabella_classi_sumatra <- data.frame(
-  Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
-  Anno_2016 = c(28.66, 59.46, 11.88),
-  Anno_2025 = c(3.81, 72.45, 23.74)
-)
-
-print(tabella_classi_sumatra)
-
-# Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
 #  Ordinamento dei fattori e definizione palette di colori scuri
 tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe, 
                                         levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
