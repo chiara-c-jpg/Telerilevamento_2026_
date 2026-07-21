@@ -1,7 +1,11 @@
+# Telerilevamento geo-ecologico in R
+# Chiara Tattini
+# Matricola n.0001143886
+
 # Impostazione della directory di lavoro
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 
-# Controllare che I raster, precedentemnte scaricati, siano salvati nella directory di lavoro 
+# Controllare che i raster, precedentemnte scaricati, siano salvati nella directory di lavoro 
 list.files()
 
 # Apertura dei pacchetti precedentemnte installati
@@ -11,14 +15,17 @@ library(viridis)    # Palette colori per gli indici
 library(ggplot2)    # Creazione grafici
 library(patchwork)  # Composizione ed affiancamento dei grafici
 
-# Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale
+# Caricamento raster Sentinel-2 (2015 e 2025) acquisiti nello stesso periodo stagionale tramite funzione "rast" del pacchtto "terra"
 borneo2015<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2015.tif") 
 borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.tif")
 
-# Definizione della palette personalizzata
+# Palette basate su "magma" per identificare le differenze
+palette_magma_diff <- colorRampPalette(magma(100))(100)
+
+# Definizione di una palette alternativa personalizzata (di colori rosso, bianco e blu)
 cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione,"blu" l'aumento mentra "white" la vegetazione stabile.
 
-# 2. ANALISI AREA BORNEO (2015 - 2025)
+# Analisi area Borneo (2015 - 2025)
 
 # Impostazione finestra per due grafici affiancati
 par(mfrow=c(1, 2))
@@ -27,10 +34,10 @@ par(mfrow=c(1, 2))
 plotRGB(borneo2015, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2015 - True Color")
 plotRGB(borneo2025, r="B4", g="B3", b="B2", stretch="lin", main="Borneo 2025 - True Color")
 
-#Manteniamo la finestra divisa in due
+# Si mantiene il pannello grafico diviso in due
 par(mfrow=c(1, 2))
 
-# Plot in False Color tramite il vicino infrarosso (NIR) per evidenziare la vegetazione
+# Plot in False Color in vicino infrarosso (NIR=8) per evidenziare la vegetazione
 plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
 plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
 
