@@ -173,7 +173,7 @@ legend("center",
        cex=1.5)  # crea una legenda con le tre classi suddivise per colori con precise dimensioni 
 
 # Analisi statistica e multitemporale
-#Per quantificare le variazioninell'uso del suolo tra il 2015 e il 2025, vengono estratte le frequenze dei pixel per ciascuna classe e calcolate le rispettive percentuali sull'area totale.
+#Per quantificare le variazioni nell'uso del suolo tra il 2015 e il 2025, vengono estratte le frequenze dei pixel per ciascuna classe e calcolate le rispettive percentuali sull'area totale.
 
 # Calcolo frequenze tramite NDVI del Borneo per il 2015 e per il 2025
 freq_2015 <- freq(ndvi2015_class)
@@ -274,10 +274,10 @@ tabella_classi_sumatra <- data.frame(
   Anno_2016 = round(perc_sum2016, 2),
   Anno_2025 = round(perc_sum2025, 2)
 )
-tabella_classi_sumatra$Regione <- "Sumatra"
+tabella_classi_sumatra$Regione <- "Sumatra" # Aggiungo una colonna per indicare che la mia regione di interesse (ROI) è a Sumatra
 
 # Visualizza la tabella 
-print(tabella_classi_sumatra
+print(tabella_classi_sumatra)
 
 # Grafico a barre delle percentuali di Sumatra 
 library(ggplot2)
@@ -291,7 +291,8 @@ tabella_classi_sumatra <- data.frame(
 )
 
 print(tabella_classi_sumatra)
-Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
+
+#Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
 #  Ordinamento dei fattori e definizione palette di colori scuri
 tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe, 
                                         levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
