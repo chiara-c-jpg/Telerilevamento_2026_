@@ -107,7 +107,7 @@ plot(ndvi_diff, col = cl_diff, main = "Differenza NDVI (2025 - 2015)")
 ### Analisi NDMI (Normalized Difference Mustoire Index)
 
 ## Calcolo NDMI 2015 2025
-```r
+
 # Calcolo NDMI tramite le bande 8=NIR e 11=SWIR
 ndmi2015 <- (borneo2015[["B8"]] - borneo2015[["B11"]]) / (borneo2015[["B8"]] + borneo2015[["B11"]])
 ndmi2025 <- (borneo2025[["B8"]] - borneo2025[["B11"]]) / (borneo2025[["B8"]] + borneo2025[["B11"]])
@@ -215,7 +215,7 @@ p2 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2025`, fill=Classe)) +
 grafico_finale <- p1 + p2 
 print(grafico_finale)
 
-Analisi Multitemporale e Comparativa della Copertura del Suolo tra ROI del Borneo e di Sumatra (2015-2025)
+# Analisi Multitemporale e Comparativa della Copertura del Suolo tra ROI del Borneo e di Sumatra (2015-2025)
 Preparazione e Classificazione dei Dati per Sumatra
 
 
@@ -232,10 +232,152 @@ par(mfrow=c(1, 2))
 plot(ndvi_2016, main="NDVI Sumatra (2016)")
 plot(ndvi_2025, main="NDVI Sumatra (2025)")
 
+#  Calcola l'NDMI per entrambi gli anni (Banda 4 = NIR, Banda 5 = SWIR)
+ndmi_2016 <- (sumatra2016_raw[[4]] - sumatra2016_raw[[5]]) / (sumatra2016_raw[[4]] + sumatra2016_raw[[5]])
+ndmi_2025 <- (sumatra2025_raw[[4]] - sumatra2025_raw[[5]]) / (sumatra2025_raw[[4]] + sumatra2025_raw[[5]])
 
+#  Plot dei due NDMI affiancati per Sumatra (2016-2025)
+par(mfrow=c(1, 2))
+plot(ndmi_2016, main="NDMI Sumatra (2016)")
+plot(ndmi_2025, main="NDMI Sumatra (2025)")
 
+# Calcola le differenze NDVI e NDMI (2025 - 2016)
+diff_ndvi <- ndvi_2025 - ndvi_2016
+diff_ndmi <- ndmi_2025 - ndmi_2016
 
+# Plot delle due mappe di differenza (NDVI e NDMI) con la palette "magna"
+par(mfrow=c(1, 2))
+plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")
+plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")
 
+# 7. Classificazione basata sulla tua matrice (soglie NDVI)
+# matrice_class <- matrix(c(min, max, classe, ...), ncol=3, byrow=TRUE)
+sumatra2016_class <- classify(ndvi_2016, matrice_class)
+sumatra2025_class <- classify(ndvi_2025, matrice_class)
 
+# Calcolo frequenze e percentuali reali dai pixel
+freq_sum2016 <- freq(sumatra2016_class)
+freq_sum2025 <- freq(sumatra2025_class)
 
+perc_sum2016 <- freq_sum2016$count * 100 / ncell(sumatra2016_class)
+perc_sum2025 <- freq_sum2025$count * 100 / ncell(sumatra2025_class)
 
+# Creazione Dataframe pulito (senza Riau)
+tabella_classi_sumatra <- data.frame(
+  Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
+  Anno_2016 = round(perc_sum2016, 2),
+  Anno_2025 = round(perc_sum2025, 2)
+)
+tabella_classi_sumatra$Regione <- "Sumatra"
+
+# Visualizza la tabella 
+print(tabella_classi_sumatra)
+### Grafico a barre delle percentuali di Sumatra 
+library(ggplot2)
+library(patchwork)
+
+# Creazione della tabella di classificazione per Sumatra 
+tabella_classi_sumatra <- data.frame(
+  Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
+  Anno_2016 = c(28.66, 59.46, 11.88),
+  Anno_2025 = c(3.81, 72.45, 23.74)
+)
+
+print(tabella_classi_sumatra)
+Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
+#  Ordinamento dei fattori e definizione palette di colori scuri
+tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe, 
+                                        levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
+
+colori_scuri <- c("Suolo Nudo" = "firebrick3", "Piantagioni" = "goldenrod3", "Foresta Primaria" = "forestgreen")
+
+# 3. Grafico Copertura Sumatra per l'anno 2016
+p1 <- ggplot(tabella_classi_sumatra, aes(x = Classe, y = Anno_2016, fill = Classe)) + 
+  geom_bar(stat = "identity") + 
+  scale_fill_manual(values = colori_scuri) + 
+  ylim(0, 100) +
+  ggtitle("Copertura Sumatra - 2016") + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none")
+
+# Grafico Copertura Sumatra per l'anno 2025
+p2 <- ggplot(tabella_classi_sumatra, aes(x = Classe, y = Anno_2025, fill = Classe)) + 
+  geom_bar(stat = "identity") + 
+  scale_fill_manual(values = colori_scuri) + 
+  ylim(0, 100) +
+  ggtitle("Copertura Sumatra - 2025") + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), legend.position = "none")
+
+# Unione e stampa del grafico finale tramite patchwork
+grafico_finale <- p1 + p2 
+print(grafico_finale)
+library(ggplot2)
+
+# Utilizziamo la tabella_totale già creata in precedenza, assicurandoci 
+# che Classe, Anno e Regione siano impostati correttamente.
+
+ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Classe)) +
+  
+  # Barre raggruppate per classe all'interno di ciascun anno
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  
+  # I tuoi colori originali per le classi di copertura
+  scale_fill_manual(values = c(
+    "Suolo Nudo" = "firebrick3", 
+    "Piantagioni" = "goldenrod3", 
+    "Foresta Primaria" = "forestgreen"
+  )) +
+  
+  ylim(0, 100) +
+  labs(title = "Dinamiche di Copertura (2016 vs 2025): Sumatra e Borneo", 
+       y = "Percentuale (%)", 
+       x = "Anno",
+       fill = "Classe di Copertura") +
+  
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 12, face = "bold"),
+        plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+        strip.text = element_text(size = 13, face = "bold", color = "black"),
+        strip.background = element_rect(fill = "gray90")) +
+        
+  # Dividiamo il grafico in due scompartimenti: uno per il Borneo, uno per Sumatra
+  facet_wrap(~ Regione)
+### Grafico comparativo finale (Borneo vs Sumatra)
+
+Per visualizzare e confrontare direttamente le dinamiche territoriali tra le due isole, realizziamo un grafico a barre raggruppate per anno, suddividendo le classi di copertura tramite `ggplot2` e `facet_wrap`:
+
+```r
+# Apertura pacchetto ggplot2
+library(ggplot2)
+
+ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Gruppo)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.85), width = 0.75) +
+  scale_fill_manual(values = c(
+    "Borneo 2016" = "#87CEFA",
+    "Sumatra 2016" = "#DDA0DD",
+    "Borneo 2025" = "#0000CD",
+    "Sumatra 2025" = "#800080"
+  )) +
+  ylim(0, 100) +
+  labs(title = "Confronto Borneo Sumatra", 
+       y = "Percentuale (%)", 
+       x = "Anno", 
+       fill = "Isola e Anno") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(size = 11, face = "bold", color = "black"),
+    axis.text.y = element_text(size = 10),
+    axis.title.y = element_text(size = 12, face = "bold"),
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 13),
+    strip.text = element_text(size = 12, face = "bold", color = "black"),
+    strip.background = element_rect(fill = "gray90", color = "black", linewidth = 0.5),
+    legend.title = element_text(size = 11, face = "bold"),
+    legend.text = element_text(size = 10),
+    panel.spacing = unit(1, "lines")
+  ) +
+  facet_wrap(~ Classe, labeller = as_labeller(c(
+    "Suolo Nudo" = "Suolo Nudo",
+    "Piantagioni" = "Piantagioni",
+    "Foresta Primaria" = "Foresta"
+  )))
