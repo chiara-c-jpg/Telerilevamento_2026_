@@ -279,6 +279,18 @@ tabella_classi_sumatra$Regione <- "Sumatra" # Aggiungo una colonna per indicare 
 
 # Visualizza la tabella 
 # Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
+
+# Creazione della tabella di classificazione per Sumatra (senza spazi nel nome colonna) delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025.
+
+tabella_classi_sumatra <- data.frame(
+  Classe = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"),
+  Anno_2016 = c(28.66, 59.46, 11.88),
+  Anno_2025 = c(3.81, 72.45, 23.74)
+)
+
+print(tabella_classi_sumatra)
+
+
 print(tabella_classi_sumatra) 
 
 # Grafico a barre delle percentuali di Sumatra 
