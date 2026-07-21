@@ -2,7 +2,7 @@
 # Chiara Tattini
 # Matricola n.0001143886
 
-# Analisi comparativa multitemporale dello stress fisiologico ed idrico delle foreste del Borneo e di Sumatra, in risposta a coltivazioni di palma da olio, Elaeis   guineensis (2015-2025)
+# Title: Analisi comparativa multitemporale dello stress fisiologico ed idrico delle foreste del Borneo e di Sumatra, in risposta a coltivazioni di palma da olio, Elaeis   guineensis (2015-2025)
 
 # Impostazione della directory di lavoro
 setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
@@ -10,7 +10,7 @@ setwd("C:/Users/chiar/Desktop/immagini satellitari Borneo")
 # Controllare che i raster, precedentemnte scaricati, siano salvati nella directory di lavoro 
 list.files()
 
-# Apertura dei pacchetti precedentemnte installati
+# Apertura dei pacchetti precedentemnte installati.
 library(terra)      # Pacchetto per la gestione dei raster ed operazioni spaziali
 library(viridis)    # Palette colori per gli indici
 library(ggplot2)    # Creazione grafici
