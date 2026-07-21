@@ -143,7 +143,7 @@ plot(ndmi_diff, col = palette_magma_diff, main = "Differenza NDMI (2025 - 2015) 
 # Definizione dei colori per 3 classi (rosso, giallo, verde scuro)
 colori_classi <- c("red", "yellow", "darkgreen")
 
-# Matrice di classificazione basata sull'NDVI del Borneo per distinguere le tre classi di copertura del suolo
+# Matrice di classificazione basata su soglie standard di NDVI per distinguere le tre classi di copertura del suolo
 matrice_class <- matrix(c(
   -Inf, 0.4, 1, # Classe 1: Suolo nudo/Deforestazione
    0.4, 0.7, 2, # Classe 2: Piantagioni
