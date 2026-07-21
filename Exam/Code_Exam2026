@@ -290,7 +290,7 @@ tabella_classi_sumatra <- data.frame(
 
 print(tabella_classi_sumatra)
 
-#Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
+# Tabella delle percentuali di copertura del suolo calcolate per l'area di studio di Sumatra tra il 2016 e il 2025
 #  Ordinamento dei fattori e definizione palette di colori scuri
 tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe, 
                                         levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
@@ -329,7 +329,7 @@ ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Classe)) +
 # Barre raggruppate per classe all'interno di ciascun anno
 geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
   
-# I tuoi colori originali per le classi di copertura
+# Impostazione dei colori  per le classi di copertura
   scale_fill_manual(values = c(
     "Suolo Nudo" = "firebrick3", 
     "Piantagioni" = "goldenrod3", 
@@ -348,11 +348,13 @@ geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7)
         strip.text = element_text(size = 13, face = "bold", color = "black"),
         strip.background = element_rect(fill = "gray90")) +
         
-  # Si divide il grafico in due scompartimenti: uno per il Borneo, uno per Sumatra
-  facet_wrap(~ Regione)
+# Si divide il grafico in due scompartimenti: uno per il Borneo, uno per Sumatra
+facet_wrap(~ Regione)
 
-# grafico finale che confronta le tre classi per Sumatra e per il Borneo per entrambi gli anni
-#Preparazione del pannello e indicazione quali dati usare e su quali assi metterli
+# grafico finale che confronta le tre classi per Sumatra e per il Borneo per entrambi gli anni.
+# Preparazione del pannello e indicazione quali dati usare e su quali assi metterli.
+# Il grafico si focalizza sulle singole classi individuate con tonalità di blu e viola.
+
 ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Gruppo)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.85), width = 0.75) +
   scale_fill_manual(values = c(
