@@ -290,16 +290,13 @@ tabella_classi_sumatra <- data.frame(
 
 print(tabella_classi_sumatra)
 
-
-print(tabella_classi_sumatra) 
-
 # Grafico a barre delle percentuali di Sumatra 
 
 #  Ordinamento dei fattori e definizione palette di colori scuri
 tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe, 
                                         levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
 
-# Assegnazione di colori scuri dei corrispondenti colori per le classi del Borneo
+# Assegnazione di colori scuri ai corrispondenti colori per le classi del Borneo
 colori_scuri <- c("Suolo Nudo" = "firebrick3", "Piantagioni" = "goldenrod3", "Foresta Primaria" = "forestgreen")
 
 # Grafico Copertura Sumatra per l'anno 2016
@@ -336,7 +333,7 @@ tabella_totale <- data.frame(
   Gruppo = c(rep("Borneo 2016", 3), rep("Borneo 2025", 3), rep("Sumatra 2016", 3), rep("Sumatra 2025", 3))
 )
 
-# Assicuriamoci che la colonna Classe mantenga l'ordine corretto
+# Assicuriamoci che la colonna classe mantenga l'ordine corretto
 tabella_totale$Classe <- factor(tabella_totale$Classe, 
                                 levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))  
 # Utilizziamo la tabella_totale già creata in precedenza, impostando correttamente classe, anno e Regione siano impostati correttamente.
