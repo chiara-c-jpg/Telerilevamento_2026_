@@ -280,8 +280,6 @@ tabella_classi_sumatra$Regione <- "Sumatra" # Aggiungo una colonna per indicare 
 print(tabella_classi_sumatra)
 
 # Grafico a barre delle percentuali di Sumatra 
-library(ggplot2)
-library(patchwork)
 
 # Creazione della tabella di classificazione per Sumatra 
 tabella_classi_sumatra <- data.frame(
@@ -297,6 +295,7 @@ print(tabella_classi_sumatra)
 tabella_classi_sumatra$Classe <- factor(tabella_classi_sumatra$Classe, 
                                         levels = c("Suolo Nudo", "Piantagioni", "Foresta Primaria"))
 
+# Assegnazione di colori scuri dei corrispondenti colori per le classi del Borneo
 colori_scuri <- c("Suolo Nudo" = "firebrick3", "Piantagioni" = "goldenrod3", "Foresta Primaria" = "forestgreen")
 
 # Grafico Copertura Sumatra per l'anno 2016
@@ -320,11 +319,13 @@ p2 <- ggplot(tabella_classi_sumatra, aes(x = Classe, y = Anno_2025, fill = Class
 # Unione e stampa del grafico finale tramite patchwork
 grafico_finale <- p1 + p2 
 print(grafico_finale)
-library(ggplot2)
 
+# Grafico comparativo finale (Borneo vs Sumatra)
+# Per confrontare le dinamiche territoriali tra le due isole, si realizza un grafico a barre raggruppate per anno, suddividendo le classi di copertura tramite "ggplot2" e "facet_wrap":
+  
 # Utilizziamo la tabella_totale già creata in precedenza, impostando correttamente classe, anno e Regione siano impostati correttamente.
 ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Classe)) +
-  
+
 # Barre raggruppate per classe all'interno di ciascun anno
 geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
   
@@ -347,16 +348,11 @@ geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7)
         strip.text = element_text(size = 13, face = "bold", color = "black"),
         strip.background = element_rect(fill = "gray90")) +
         
-  # Dividiamo il grafico in due scompartimenti: uno per il Borneo, uno per Sumatra
+  # Si divide il grafico in due scompartimenti: uno per il Borneo, uno per Sumatra
   facet_wrap(~ Regione)
 
-# Grafico comparativo finale (Borneo vs Sumatra)
-# Per confrontare le dinamiche territoriali tra le due isole, si ottiene un grafico a barre raggruppate per anno, suddividendo le classi di copertura tramite "ggplot2" e "facet_wrap":
-
-```r
-# Apertura pacchetto ggplot2
-library(ggplot2)
-
+# grafico finale che confronta le tre classi per Sumatra e per il Borneo per entrambi gli anni
+#Preparazione del pannello e indicazione quali dati usare e su quali assi metterli
 ggplot(tabella_totale, aes(x = Anno, y = Percentuale, fill = Gruppo)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.85), width = 0.75) +
   scale_fill_manual(values = c(
