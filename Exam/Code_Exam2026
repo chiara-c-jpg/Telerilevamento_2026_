@@ -143,7 +143,7 @@ plot(ndmi_diff, col = palette_magma_diff, main = "Differenza NDMI (2025 - 2015) 
 # Definizione dei colori per 3 classi (rosso, giallo, verde scuro)
 colori_classi <- c("red", "yellow", "darkgreen")
 
-# Matrice di classificazione basata sull'NDVI per distinguere le tre classi di copertura del suolo
+# Matrice di classificazione basata sull'NDVI del Borneo per distinguere le tre classi di copertura del suolo
 matrice_class <- matrix(c(
   -Inf, 0.4, 1, # Classe 1: Suolo nudo/Deforestazione
    0.4, 0.7, 2, # Classe 2: Piantagioni
@@ -224,8 +224,8 @@ p2 <- ggplot(tabella_classi_borneo, aes(x=Classe, y=`Anno 2025`, fill=Classe)) +
 grafico_finale <- p1 + p2 
 print(grafico_finale)
 
-# Analisi Multitemporale e Comparativa della Copertura del Suolo tra la regione di interesse del Borneo e quella di Sumatra (2015-2025)
-Preparazione e Classificazione dei Dati per Sumatra
+# Analisi di confronto della Copertura del Suolo tra la regione di interesse del Borneo e quella di Sumatra (2015-2025)
+# Preparazione e classificazione dei dati per Sumatra
 
 # Caricamento dei file raster
 sumatra2016_raw <- rast("sumatra2016.tif")
@@ -259,6 +259,7 @@ plot(diff_ndvi, col = magma(100), main="Differenza NDVI (2025 - 2016)")  #Plot N
 plot(diff_ndmi, col = magma(100), main="Differenza NDMI (2025 - 2016)")   #Plot NDMI della differenza con titolo "Differenza NDMI (2025 - 2016)"
 
 # Classificazione basata sulla matrice (impostando le soglie NDVI)
+
 # matrice_class <- matrix(c(min, max, classe, ...), ncol=3, byrow=TRUE)
 sumatra2016_class <- classify(ndvi_2016, matrice_class) # classificazione NDVI Sumatra 2016
 sumatra2025_class <- classify(ndvi_2025, matrice_class) # classificazione NDVI Sumatra 2025
