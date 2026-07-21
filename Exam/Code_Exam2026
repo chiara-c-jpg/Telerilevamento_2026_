@@ -109,11 +109,12 @@ par(mfrow=c(1,1))
 # Plot Differenza NDVI
 plot(ndvi_diff, col = cl_diff, main = "Differenza NDVI (2025 - 2015)")
 
-# Analisi NDMI (Normalized Difference Moisture Index) 
+# Plot Differenza NDVI con la palette alternativa basata su "magma"
+plot(ndvi_diff, col = palette_magma_diff, main = "Differenza NDVI (2025 - 2015) - Magma")
 
-# Analisi NDMI 2015 2025
+# Analisi NDMI (Normalized Difference Moisture Index) 2015 - 2025
 
-# Calcolo NDMI tramite le bande NIR(vicino infrarosso) e SWIR(Short-Wavelength Infrared) (NIR=8 e SWIR=11) 
+# Calcolo NDMI tramite le bande NIR(Near Infrared) e SWIR(Short-Wavelength Infrared) (NIR=8 e SWIR=11) 
 ndmi2015 <- (borneo2015[["B8"]] - borneo2015[["B11"]]) / (borneo2015[["B8"]] + borneo2015[["B11"]])
 ndmi2025 <- (borneo2025[["B8"]] - borneo2025[["B11"]]) / (borneo2025[["B8"]] + borneo2025[["B11"]])
 
@@ -123,7 +124,6 @@ par(mfrow=c(1,2))
 # Generazione dei grafici NDMI 2015 e 2025 affiancati
 plot(ndmi2015, col=viridis(100), main="NDMI 2015")
 plot(ndmi2025, col=viridis(100), main="NDMI 2025")
-
 
 # Differenza NDMI (2025 - 2015)
 # Calcoliamo la differenza dell'NDMI per evidenziare le variazioni nel contenuto d'acqua della vegetazione nel decennio 2015 2025
@@ -136,6 +136,9 @@ par(mfrow=c(1,1))
 
 # Plot della diffrenza NDMI tramite palette personalizzata 
 plot(ndmi_diff, col=cl_diff, main="Differenza NDMI (2025 - 2015)")
+
+# Plot Differenza NDMI con la palette alternativa basata su "magma"
+plot(ndmi_diff, col = palette_magma_diff, main = "Differenza NDMI (2025 - 2015) - Magma")
 
 # Definizione dei colori per 3 classi (rosso, giallo, verde scuro)
 colori_classi <- c("red", "yellow", "darkgreen")
