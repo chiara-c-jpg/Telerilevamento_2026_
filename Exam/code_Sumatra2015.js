@@ -1,4 +1,54 @@
+// =================================================================
+// ESTRAZIONE SUMATRA UNICA: 2016 (El Niño) & 2025
+// =================================================================
 
+// 1. Area di interesse di Sumatra
+var roi = ee.Geometry.Polygon(
+  [[[102.3, -1.2],
+    [102.7, -1.2],
+    [102.7, -0.8],
+    [102.3, -0.8]]]
+);
+
+Map.centerObject(roi, 10);
+Map.addLayer(roi, {color: 'red'}, 'ROI Sumatra');
+
+// 2. Immagine 2016 (Picco El Niño - intero anno per evitare buchi)
+var dataset2016 = ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
+                  .filterBounds(roi)
+                  .filterDate('2016-01-01', '2016-12-31')
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+                  .median();
+
+// 3. Immagine 2025
+var dataset2025 = ee.ImageCollection('COPERNICUS/S2_HARMONIZED')
+                  .filterBounds(roi)
+                  .filterDate('2024-06-01', '2025-10-31')
+                  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+                  .median();
+
+// 4. Selezione delle bande: B2(Blue), B3(Green), B4(Red), B8(NIR), B11(SWIR)
+var bands = ['B2', 'B3', 'B4', 'B8', 'B11'];
+var image2016 = dataset2016.select(bands);
+var image2025 = dataset2025.select(bands);
+
+// 5. Esportazione su Google Drive (2016)
+Export.image.toDrive({
+  image: image2016,
+  description: 'sumatra2016',
+  scale: 10,
+  region: roi,
+  maxPixels: 1e13
+});
+
+// 6. Esportazione su Google Drive (2025)
+Export.image.toDrive({
+  image: image2025,
+  description: 'sumatra2025',
+  scale: 10,
+  region: roi,
+  maxPixels: 1e13
+});
 // =================================================================
 // ESTRAZIONE SUMATRA DEFINITIVA (Stessa area e griglia del Borneo)
 // =================================================================
