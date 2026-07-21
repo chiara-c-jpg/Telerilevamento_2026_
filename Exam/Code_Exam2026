@@ -22,11 +22,11 @@ borneo2025<-rast("C:/Users/chiar/Desktop/immagini satellitari Borneo/Borneo2025.
 palette_magma_diff <- colorRampPalette(magma(100))(100)
 
 # Definizione di una palette alternativa personalizzata (di colori rosso, bianco e blu)
-cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione,"blu" l'aumento mentra "white" la vegetazione stabile.
+cl_diff<-colorRampPalette(c("red","white","blue"))((100)) # "red" indica la perdita di vegetazione,"blu" l'aumento mentre "white" la vegetazione stabile.
 
 # Analisi area Borneo (2015 - 2025)
 
-# Impostazione finestra per due grafici affiancati
+# Impostazione finestra per due grafici affiancati (True Color)
 par(mfrow=c(1, 2))
 
 # Plot delle immagini RGB con i colori reali (True Color)
@@ -40,13 +40,10 @@ par(mfrow=c(1, 2))
 plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
 plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
 
-# Impostazione di un pannelo 2*2
-par(mfrow=c(2, 2))
-
 # Visualizzazione False Color (NIR) 2015 
 
-# Creazione del pannello 2x2 
-par(mfrow=c(2, 2)) 
+# Impostazione di un pannelo 2x2
+par(mfrow=c(2, 2))
 
 # Visualizzazione singole bande Borneo del 2015 con la palette  "magma"
 plot(borneo2015[["B4"]], main="B4 - Rosso 2015", col= magma(100))
@@ -54,11 +51,10 @@ plot(borneo2015[["B3"]], main="B3 - Verde 2015", col= magma(100))
 plot(borneo2015[["B2"]], main="B2 - Blu 2015", col= magma(100))
 plot(borneo2015[["B8"]], main="B8 - NIR 2015", col= magma(100))
 
-
 # Creazione del pannello 2x2 
 par(mfrow=c(2, 2)) 
 
-# Visualizzazione immagini per ogni banda Borneo del 2015 con la palette  "magma"
+# Visualizzazione per ogni banda dell'immagine del Borneo del 2025 tramite la palette  "magma"
 plot(borneo2025[["B4"]], main="B4 - Rosso 2025", col= magma(100))
 plot(borneo2025[["B3"]], main="B3 - Verde 2025", col= magma(100))
 plot(borneo2025[["B2"]], main="B2 - Blu 2025", col= magma(100))
@@ -85,8 +81,11 @@ dvi_diff <- dvi2025 - dvi2015
 # Impostazione del layout singolo 
 par(mfrow=c(1,1))
 
-# Plot Differenza DVI 
+# Plot Differenza DVI con la palette personalizzata (Rosso-Bianco-Blu)
 plot(dvi_diff, col = cl_diff, main = "Differenza DVI (2025 - 2015)")
+
+# Plot Differenza DVI con la palette alternativa basata su "magma"
+plot(dvi_diff, col = palette_magma_diff, main = "Differenza DVI (2025 - 2015) - Magma")
 
 # Analisi NDVI  (Normalized Difference Vegetation Index) del Borneo (2015 - 2025)
 
