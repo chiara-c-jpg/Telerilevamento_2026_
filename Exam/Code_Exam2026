@@ -40,8 +40,6 @@ par(mfrow=c(1, 2))
 plotRGB(borneo2015, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2015 - False Color NIR")
 plotRGB(borneo2025, r="B8", g="B4", b="B3", stretch="lin", main="Borneo 2025 - False Color NIR")
 
-# Visualizzazione False Color (NIR) 2015 
-
 # Impostazione di un pannelo 2x2
 par(mfrow=c(2, 2))
 
@@ -126,7 +124,7 @@ plot(ndmi2015, col=viridis(100), main="NDMI 2015")
 plot(ndmi2025, col=viridis(100), main="NDMI 2025")
 
 # Differenza NDMI (2025 - 2015)
-# Calcoliamo la differenza dell'NDMI per evidenziare le variazioni nel contenuto d'acqua della vegetazione nel decennio 2015 2025
+# Calcoliamo la differenza dell'NDMI per evidenziare le variazioni nel contenuto d'acqua nella vegetazione nel decennio 2015 - 2025
 
 # Calcolo della differenza NDMI
 ndmi_diff <- ndmi2025 - ndmi2015
@@ -154,17 +152,17 @@ matrice_class <- matrix(c(
 ndvi2015_class <- classify(ndvi2015, matrice_class)
 ndvi2025_class <- classify(ndvi2025, matrice_class)
 
-# Imposta il layout
+# Impostazione del layout con tre colonne (due per le mappe e una per la legenda unica)
 layout(matrix(c(1, 2, 3), nrow=1), widths=c(1, 1, 0.3))
 
-# Riduci i margini attorno alle mappe per ingrandirle (sotto, sinistra, sopra, destra)
+# Riduzione dei margini definendo valori attorno alle mappe per ingrandirle (sotto, sinistra, sopra, destra)
 par(mar=c(2.5, 2.5, 3, 1)) 
 
-# Plot delle due mappe con i colori assegnati
+# Plot delle due mappe con i colori assegnati ad aogni classe 
 plot(ndvi2015_class, col=colori_classi, main="Classificazione 2015", legend=FALSE)
 plot(ndvi2025_class, col=colori_classi, main="Classificazione 2025", legend=FALSE)
 
-# Azzera i margini per il pannello della legenda e inseriscila
+# Azzera i margini per il pannello della legenda e la posiziona
 par(mar=c(0, 0, 0, 0)) # Azzera i margini del pannello 
 plot.new()  #crea un nuovo pannello ografico
 legend("center", 
@@ -175,9 +173,9 @@ legend("center",
        cex=1.5)  # crea una legenda con le tre classi suddivise per colori con precise dimensioni 
 
 # Analisi statistica e multitemporale
-Per quantificare le variazioninell'uso del suolo tra il 2015 e il 2025, estraiamo le frequenze dei pixel per ciascuna classe e calcoliamo le rispettive percentuali sull'area totale.
+#Per quantificare le variazioninell'uso del suolo tra il 2015 e il 2025, sono estratte le frequenze dei pixel per ciascuna classe e calcolate le rispettive percentuali sull'area totale.
 
-# Calcolo frequenze tramite NDVI del Borneo per il 2015 e 2025
+# Calcolo frequenze tramite NDVI del Borneo per il 2015 e per il 2025
 freq_2015 <- freq(ndvi2015_class)
 freq_2025 <- freq(ndvi2025_class)
 
