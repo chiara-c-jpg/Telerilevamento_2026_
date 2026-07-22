@@ -1,4 +1,4 @@
-# Script to import data from a computer or GitHub
+# Script to import data from a computer or gitHub
 
 library(terra)
 library(imageRy)
@@ -6,8 +6,9 @@ library(viridis)
 library(ggplot2)
 library(patchwork)
 
-setwd("~/Desktop/drone_teleril")
-# c://blablabla/lknlnln
+# set working directory
+setwd("C:\Users\chiar\Desktop\drone telerilevamento")
+
 
 # get the directory
 getwd()
@@ -30,19 +31,19 @@ plot(stack)
 plotRGB(stack, r=3, g=2, b=1, stretch="lin")
 plotRGB(stack, r=3, g=2, b=1, stretch="hist")
 
-# without stretch declaration
+# without stretch 
 im.plotRGB(stack, r=3, g=2, b=1)
 
 plotRGB(stack, 2, 3, 1, stretch="lin")
 plotRGB(stack, 2, 1, 3, stretch="lin")
 
-# NDVI
+# create NDVI
 ndvi <- im.ndvi(stack, 3, 2)
 
 plot(ndvi, col=magma(100))
 plot(ndvi, col=plasma(20))
 
-# save the data
+# save data
 writeRaster(ndvi, "ndvi.tif")
 
 # imagine that a researcher is using your data: reimporting files 
@@ -81,6 +82,6 @@ p2 <- im.ridgeline(stack, scale=1, palette="viridis")
 p1 + p2
 dev.off()
 
-# import from Git
+# importing from Git
 # link to the data
 nirgit <- rast("https://raw.githubusercontent.com/ducciorocchini/Telerilevamento_2026/main/Drone/DJI_20260331174728_0001_MS_NIR.TIF")
