@@ -5,15 +5,16 @@ library(imageRy)
 library(ggplot2)
 library(patchwork)
 
-# set wd
-setwd("~/Downloads")
-# C://utenteovveroio/Downloads/
+# setting working directory
+setwd("C:\Users\chiar\Desktop\telerilevamento")
+
 getwd()
 
 # listing files
 im.list()
 
-# import
+#exercise
+# importing jpg
 sun <- im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
 
 # classify
@@ -30,7 +31,7 @@ cancc <- im.classify(can, seed=42, num_clusters=4)
 # classifying data out of R
 list.files()
 
-# import data
+# importing data
 getwd()
 dji <- rast("dji.jpg")
 dji <- flip(dji)
@@ -90,11 +91,11 @@ tabout <- data.frame(
 ggplot(tabout, aes(x=class, y=perc1992, color=class)) + # structure
   geom_bar(stat="identity", fill="white") # bar plot
   
-# Exercise: plot the bars of 2006
+# Exercise: plot the bars of 2006 with ggplot
 ggplot(tabout, aes(x=class, y=perc2006, color=class)) + # structure
   geom_bar(stat="identity", fill="white") # bar plot
   
-# Using patchwork!
+# Using patchwork
 p1 <- ggplot(tabout, aes(x=class, y=perc1992, color=class)) + # structure
   geom_bar(stat="identity", fill="white") + # bar plot 
   ylim(c(0,100)) + # limits
