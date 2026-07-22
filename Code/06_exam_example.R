@@ -1,12 +1,9 @@
 library(terra)
 library(imageRy)
 
-setwd("~/Desktop/")
-# c://blablabla/lknlnln
-
-getwd()
-
+setwd("C:\Users\chiar\Desktop\06-exaple exam")
 list.files() 
+getwd()
 
 richat <- rast("richatstructure_oli_20260306.jpg")
 richat <- flip(richat)
@@ -16,47 +13,27 @@ plot(richat)
 dev.off()
 
 png("bande.png")
+
+ice <- rast("ISS074-E-417243.jpg")
+
+im.multiframe(1,2)
+plot(ice[[1]])
+plot(ice[[2]])
+
+png("prime_due_band.png")
 im.multiframe(2,1)
-plot(richat[[1]])
-plot(richat[[2]])
+plot(ice[[1]])
+plot(ice[[2]])
 dev.off()
 
-# Da chatGPT
-
-png("istogrammi_bande.png", width=1200, height=800)
-par(mfrow=c(2,2))   # imposta una griglia 2x2, una casella resterà vuota se hai 3 bande
-
-hist(values(richat[[1]]),
-     main="Istogramma banda 1",
-     xlab="Valori digitali",
-     col="grey")
-
-hist(values(richat[[2]]),
-     main="Istogramma banda 2",
-     xlab="Valori digitali",
-     col="grey")
-
-hist(values(richat[[3]]),
-     main="Istogramma banda 3",
-     xlab="Valori digitali",
-     col="grey")
-
+# istogrammi
+png("ist.png")
+im.multiframe(3,1)
+hist(values(ice[[1]]), main="Istogramma Red", col="red")
+hist(values(ice[[2]]), main="Istogramma Green", col="green")
+hist(values(ice[[3]]), main="Istogramma Blue", col="blue")
 dev.off()
 
 
-# Ciclo for
-
-png("istogrammi_bande_colorati.png", width=1200, height=800)
-par(mfrow=c(2,2))
-
-colori <- c("red", "green", "blue")
-
-for(i in 1:nlyr(richat)) {
-  hist(richat[[i]],
-       main=paste("Istogramma banda", i),
-       xlab="Valori digitali",
-       col=colori[i],
-       border="white")
-}
 
 dev.off()
