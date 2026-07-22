@@ -34,8 +34,7 @@ im.multiframe(3,1)
 hist(values(ice[[1]]), main="Istogramma Red", col="red")
 hist(values(ice[[2]]), main="Istogramma Green", col="green")
 hist(values(ice[[3]]), main="Istogramma Blue", col="blue")
+
 dev.off() #Chiusura del dispositivo grafico.
 
 
-
-dev.off()
