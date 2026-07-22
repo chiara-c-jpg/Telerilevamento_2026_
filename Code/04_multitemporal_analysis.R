@@ -1,12 +1,15 @@
 # Code for performing multitemporal analysis with satellite imageRy
 
+#pacchetti
 library(terra)
 library(imageRy)
 library(viridis)
 library(ggplot2)
+
 # install.packages("ggrdiges")
 library(ggridges)
 
+# lista dei file
 im.list()
 
 EN_01 <- im.import("EN_01.png")
@@ -17,7 +20,7 @@ EN_13 <- im.import("EN_13.png")
 EN_13 <- flip(EN_13)
 plot(EN_13)
 
-# Exercise: plot the two images one on top of the other
+# Exercise: plot two images one on top of the other
 im.multiframe(2,1)
 plot(EN_01)
 plot(EN_13)
@@ -27,7 +30,7 @@ ENdif <- EN_01[[1]] - EN_13[[1]]
 dev.off()
 plot(ENdif)
 
-# Greenland example
+# esempio Greenland 
 
 # Exercise: import all the greenland data and create a stack
 g2000 <- im.import("greenland.2000.tif")
