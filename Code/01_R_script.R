@@ -2,13 +2,13 @@
 
 2 + 3
 
-# oggetti e assegnazione
+# oggetti e assegnazione 
 michele <- 2 + 3
 michele
 
 tecla <- 4 + 6
 
-# tutte le operzioni
+# tutte le operazioni somma addizione elevamento a potenza divisione
 michele + tecla
 michele ^ tecla
 michele / tecla
@@ -22,14 +22,14 @@ plot(giorgia, sonia, col="blue", pch=19)
 plot(giorgia, sonia, col="blue", pch=19, cex=2)
 plot(giorgia, sonia, col="blue", pch=19, cex=2, xlab="pollution", ylab="numero di delfini")
 
-# installazione pacchetti
+# installazione pacchetti funzione
 # CRAN
 install.packages("terra")
 library(terra)
 
 # GitHUb
-install.packages("devtools") # remotes
-library(devtools)  # remotes
+install.packages("devtools") 
+library(devtools)
 install_github("ducciorocchini/imageRy")
 library(imageRy)
 im.list()
