@@ -1,16 +1,17 @@
 # R code for visualizing multispectral data
-
-library(terra) 
 library(imageRy)
-# install.packages("devtools")
-# install.packages("viridis")
-library(devtools)
-# install_github("ducciorocchini/imageRy")
 library(viridis)
-library(ggplot2)
-# install.packages("patchwork")
+library(terra) 
+library(devtools)
 library(patchwork)
 library(GGally)
+
+# install_github("ducciorocchini/imageRy")
+# library(ggplot2) 
+# install.packages("viridis")
+# install.packages("devtools")
+# install.packages("patchwork")
+
 
 im.list()
 
