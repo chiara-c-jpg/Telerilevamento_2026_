@@ -4,14 +4,12 @@ Multitemporal and spectral analysis of fires using satellite imagery and band in
 # Data gathering
 Data were gathered from the [Earth Observatory site](https://science.nasa.gov/earth/earth-observatory/)
 
-
 # Packages used:
 ``` r
 library(terra)
 library(imageRy)
 library(viridis) 
 ```
-
 # Setting the working directory 
 setwd("C:\Users\chiar\Desktop\06-exaple exam")
 
@@ -22,11 +20,10 @@ fires = flip(fires)
 plot(fires)
 The image is the following:
 
-## Data gathering
+# Data gathering
 Data are gathered from the [Earth Observatory site](https://earthobservatory.nasa.gov/).
 
-Packages used:
-
+# Packages used:
 ``` r
 library(terra)
 library(imageRy)
@@ -37,7 +34,7 @@ The image is the following:
 
 ![fires](https://github.com/user-attachments/assets/e0f07ba3-8883-4b8b-b9e8-8e1a2049f296)
 
-## Data analysis
+# Data analysis
 
 Based on the data gathered from the site we can calculate an index, using the first two bands:
 
@@ -45,7 +42,6 @@ Based on the data gathered from the site we can calculate an index, using the fi
 fireindex = fires[[1]] - fires[[2]]
 plot(fireindex)
 ```
-
 In order to export the index, we can use the png() function like:
 
 ``` r
@@ -53,9 +49,7 @@ png("fireindex.png")
 plot(fireindex)
 dev.off()
 ```
-
 The index looks like:
-
 ![fireindex](https://github.com/user-attachments/assets/0690737f-e49b-4b94-9178-29ad76804765)
 
 ## Index visualisation by viridis
@@ -77,7 +71,5 @@ Since the RGB is composed by visible bands, a high correlation is expected:
 ``` r
 pairs(dust)
 ```
-
 This is also graphically apparent:
-
 ![pairsout](https://github.com/user-attachments/assets/c16c84dd-dc4f-42f9-be48-75a9d3b17a4e)
