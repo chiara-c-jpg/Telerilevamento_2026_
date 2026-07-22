@@ -1,11 +1,11 @@
-# My functions
+# My function
 
 somma <- function(x,y){
   z=x+y
   return(z)
   }
 
-# Exercise: make the functuion called difference
+# Exercise to do: make the functuion called difference
 
 differenzaselvaggia <- function(x,y){
   z=x-y
@@ -25,27 +25,27 @@ mf <- function(nx=1,ny=2){
 # if else
 numeri <- function(x){
   if(x>0){
-    print("Questo numero è positivo, ciuco!")
+    print("Questo numero è positivo")
     }
   else {
-    print("Questo numero è negativo, se non sai queste cose, torna a scuola")  
+    print("Questo numero è negativo")  
     }
   }
 
 # if else
 numeri <- function(x){
   if(x>0){
-    print("Questo numero è positivo, ciuco!")
+    print("Questo numero è positivo")
     }
   else if(x<0) {
-    print("Questo numero è negativo, se non sai queste cose, torna a scuola")  
+    print("Questo numero è negativo")  
     }
   else {
     print("Zero non è né negativo né positivo") 
     }
   }
 
-# Cicli for
+# Ciclo for
 loop <- function(){
   for (i in 1:10) {
     print(i)
@@ -68,4 +68,4 @@ loop3 <- function(){
 
 sink("data.txt")
 loop3()
-sink()
+sink() #comando simile a dev.off() chiusura
