@@ -7,7 +7,7 @@ somma <- function(x,y){
 
 # Exercise to do: make the function called difference
 
-differenzaselvaggia <- function(x,y){
+differenza<- function(x,y){
   z=x-y
   return(z)
   }
